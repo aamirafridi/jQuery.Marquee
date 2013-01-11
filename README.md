@@ -13,7 +13,7 @@ Options:
 Demo:
 -----
  - **Demo link:** http://jsfiddle.net/aamir/UUfn2/show/
- - **Playground:** http://jsfiddle.net/aamir/UUfn2/show/edit
+ - **Playground:** http://jsfiddle.net/aamir/UUfn2/
 
 Use:
 ----
