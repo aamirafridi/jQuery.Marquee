@@ -30,6 +30,11 @@ Use:
 
 ###Apply plugin:
 ```javascript
+/**
+ * Example of starting a plugin with options.
+ * I am just passing all the default options
+ * so you can just start the plugin using $('.marquee').marquee();
+*/
 $('.marquee').marquee({
 	//speed in milliseconds of the marquee
 	speed: 15000,
