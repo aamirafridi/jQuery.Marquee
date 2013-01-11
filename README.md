@@ -10,6 +10,11 @@ Options:
  - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000</li>
  - **direction:** Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'</li>
 
+Demo:
+-----
+ - **Demo link:** http://jsfiddle.net/aamir/UUfn2/show/
+ - **Playground:** http://jsfiddle.net/aamir/UUfn2/show/edit
+
 Use:
 ----
 
