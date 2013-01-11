@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="jquery.marquee.js"></script>
+		<script>
+			$(function(){
+				$('.marquee').marquee();
+				$('.marquee-with-options').marquee({
+					//speed in milliseconds of the marquee
+					speed: 15000,
+					//gap in pixels between the tickers
+					gap: 50,
+					//gap in pixels between the tickers
+					delayBeforeStart: 0,
+					//'left' or 'right'
+					direction: 'left'
+				});
+			});
+		</script>
+		<style type="text/css">
+			body {
+			  margin: 10px;
+			}
+
+			h1 {
+				margin-bottom: 20px;
+				border-bottom: 1px dotted #ccc;
+				padding-bottom: 10px;
+			}
+
+			.marquee, .marquee-with-options {
+			  width: 300px;
+			  overflow: hidden;
+			  border:1px solid #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>jQuery Marquee</h1>
+		<h2>Options</h2>
+		<ul>
+			<li><b>speed:</b> Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.</li>
+			<li><b>gap:</b> Gap in pixels between the tickers. Default is 20</li>
+			<li><b>delayBeforeStart:</b> Time in milliseconds before the marquee starts animating. Default is 1000</li>
+			<li><b>direction:</b> Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'</li>
+		</ul>
+
+		<h2>Default options</h2>
+		<div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+		
+		<h2>Options as data attributes</h2>
+		<div data-speed="2000" data-gap="30" data-direction="right" class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+		
+		<h2>Options passed with javascript object</h2>
+		<div class='marquee-with-options'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+	</body>
+</html>
