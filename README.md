@@ -3,6 +3,8 @@ jQuery-Marquee
 
 jQuery plugin to scroll the text like the old traditional marquee
 
+**Blog post:** http://aamirafridi.com/jquery/jquery-marquee-plugin
+
 Options:
 --------
  - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.</li>
