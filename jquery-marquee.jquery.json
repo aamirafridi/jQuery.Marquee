@@ -1,6 +1,6 @@
 {
   	"name": "Marquee",
-	"version": "0.1",
+	"version": "0.1.0",
 	"title": "jQuery Marquee",
 	"author": "Aamir Afridi",
 	"dependencies": "jquery",
