@@ -14,8 +14,8 @@ Options:
 
 Demo:
 -----
- - **Demo link:** http://jsfiddle.net/aamir/UUfn2/show/
- - **Playground:** http://jsfiddle.net/aamir/UUfn2/
+ - **Demo link:** http://jsfiddle.net/aamir/UUfn2/3/show/
+ - **Playground:** http://jsfiddle.net/aamir/UUfn2/3/
 
 Use:
 ----
