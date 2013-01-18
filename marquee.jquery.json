@@ -1,0 +1,27 @@
+{
+  "name": "marquee",
+  "title": "jQuery Marquee",
+  "description": "jQuery plugin to scroll the text like the old traditional marquee.",
+  "keywords": ["marquee", "animate", "scroll", "ticker", "news"],
+  "version": "0.1.2",
+  "author": {
+    "name": "Aamir Afridi",
+    "email" : "aamirafridi@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "Aamir Afridi",
+      "email": "aamirafridi@gmail.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "homepage": "https://aamirafridi.com/jquery/jquery-marquee-plugin",
+  "docs": "https://github.com/aamirafridi/jQuery-Marquee/blob/master/README.md",
+  "demo": "http://jsfiddle.net/aamir/UUfn2/show/",
+  "download": "https://github.com/aamirafridi/jQuery-Marquee/archive/master.zip"
+}
