@@ -2,8 +2,8 @@
   "name": "marquee",
   "title": "jQuery Marquee",
   "description": "jQuery plugin to scroll the text like the old traditional marquee.",
-  "keywords": ["marquee", "animate", "scroll", "ticker", "news"],
-  "version": "0.1.4",
+  "keywords": ["marquee", "animate", "scroll", "ticker", "news", "effect", "ui", "animation"],
+  "version": "0.1.5",
   "author": {
     "name": "Aamir Afridi",
     "email" : "aamirafridi@gmail.com"
