@@ -47,7 +47,7 @@ $('.marquee').marquee({
 	speed: 15000,
 	//gap in pixels between the tickers
 	gap: 50,
-	//gap in pixels between the tickers
+	//time in milliseconds before the marquee will start animating
 	delayBeforeStart: 0,
 	//'left' or 'right'
 	direction: 'left'
