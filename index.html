@@ -8,13 +8,15 @@
 				$('.marquee').marquee();
 				$('.marquee-with-options').marquee({
 					//speed in milliseconds of the marquee
-					speed: 15000,
+					speed: 5000,
 					//gap in pixels between the tickers
 					gap: 50,
 					//gap in pixels between the tickers
 					delayBeforeStart: 0,
 					//'left' or 'right'
-					direction: 'left'
+					direction: 'left',
+					//true or false - should the marquee be duplicated to show an effect of continues flow
+					duplicated: true
 				});
 			});
 		</script>
@@ -25,8 +27,14 @@
 
 			h1 {
 				margin-bottom: 20px;
-				border-bottom: 1px dotted #ccc;
 				padding-bottom: 10px;
+				text-align: center;
+			}
+
+			h2 {
+				border-bottom: 1px dotted #ccc;
+				padding-bottom: 5px;
+				margin-bottom: 10px;
 			}
 
 			.marquee, .marquee-with-options {
@@ -38,21 +46,41 @@
 	</head>
 	<body>
 		<h1>jQuery Marquee</h1>
+		<h2>Events</h2>
+		<ul>
+			<li><b>beforeStarting:</b> Event will be fired on the element before animation starts.</li>
+			<li><b>finished:</b> Event will be fired on the element after the finishes animation.</li>
+		</ul>
+
 		<h2>Options</h2>
 		<ul>
-			<li><b>speed:</b> Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.</li>
+			<li><b>speed:</b> Speed in milliseconds in which you want your text to travel with width of your main container. Default is 10000.</li>
 			<li><b>gap:</b> Gap in pixels between the tickers. Default is 20</li>
 			<li><b>delayBeforeStart:</b> Time in milliseconds before the marquee starts animating. Default is 1000</li>
 			<li><b>direction:</b> Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'</li>
+			<li><b>duplicated:</b> true or false - should the marquee be duplicated to show an effect of continues flow. Default is false</li>
 		</ul>
 
-		<h2>Default options</h2>
-		<div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+		<h2>Demos</h2>
+		<h3>Default options</h3>
+		<div><strong>NOTE:</strong> Following 3 marquee has different length of text but the speed is same. Plugin will adjust the speed according to the length of your text. <i>(new feature)</i></div>
+		<div class='marquee'>Less text here</div>
+		<div class='marquee'>Longer text lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+		<div class='marquee'>Very very long text lorem ipsum dolor sit amet, lorem ipsum dolor sit amet lorem ipsum dolor sit amet consectetur adipiscing elit END.</div>
 		
-		<h2>Options as data attributes</h2>
+		<h3>Options as data attributes</h3>
 		<div data-speed="2000" data-gap="30" data-direction="right" class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 		
-		<h2>Options passed with javascript object</h2>
+		<h3>Overwrite the default options with following.</h3>
+<pre>
+$('.marquee-with-options').marquee({
+	speed: 5000,
+	gap: 50,
+	delayBeforeStart: 0,
+	direction: 'left',
+	duplicated: true
+});
+</pre>
 		<div class='marquee-with-options'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 	</body>
 </html>
