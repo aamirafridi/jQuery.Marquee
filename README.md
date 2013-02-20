@@ -8,8 +8,6 @@ Update:
  - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
  - 'duplicated' option added. See the details below in Options section.
 
-**Blog post:** http://aamirafridi.com/jquery/jquery-marquee-plugin
-
 Options:
 --------
  - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.
@@ -18,9 +16,10 @@ Options:
  - **direction:** Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'.
  - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
 
-Demo:
+Demo & blog post:
 -----
- - http://jquery.aamirafridi.com/jquerymarquee/
+ - **Demo:** http://jquery.aamirafridi.com/jquerymarquee/
+ - **Blog post:** http://aamirafridi.com/jquery/jquery-marquee-plugin
 
 Use:
 ----
