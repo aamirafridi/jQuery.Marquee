@@ -16,6 +16,11 @@ Options:
  - **direction:** Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'.
  - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
 
+Events:
+------
+ - **beforeStarting:** Event will be fired on the element before animation starts.
+ - **finished:** Event will be fired on the element after the animation finishes.
+
 Demo & blog post:
 -----
  - **Demo:** http://jquery.aamirafridi.com/jquerymarquee/
