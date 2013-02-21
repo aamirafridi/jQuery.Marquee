@@ -3,8 +3,8 @@ jQuery-Marquee
 
 jQuery plugin to scroll the text like the old traditional marquee
 
-Update:
--------
+Update (20 Feb 2013):
+--------------------
  - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
  - 'duplicated' option added. See the details below in Options section.
 
