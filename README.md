@@ -73,3 +73,19 @@ $('.marquee').marquee({
 	duplicated: true
 });
 ```
+
+###How to use events:
+
+```javascript
+var $mq = $('.marquee').marquee();
+$('.someLink').click(function(){
+  $mq.trigger('pause')
+});
+```
+
+```javascript
+var $mq = $('.marquee').marquee();
+$('.someLink').click(function(){
+  $mq.trigger('resume');
+});
+```
