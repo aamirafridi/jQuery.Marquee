@@ -25,6 +25,8 @@ Events:
 ------
  - **beforeStarting:** Event will be fired on the element before animation starts.
  - **finished:** Event will be fired on the element after the animation finishes.
+ - **pause:** Fire this event on the element when you want to pause the animation, for example when you click/hover a link.
+ - **resume:** Fire this event on the element when you want to resume, the paused animation.
 
 Demo & blog post:
 -----

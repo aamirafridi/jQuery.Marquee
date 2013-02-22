@@ -76,6 +76,10 @@
 				});
 			};
 			
+			//bind pause and resume events
+			$this.on('pause', function(){ $marqueeWrapper.pause(); });
+			$this.on('resume', function(){ $marqueeWrapper.resume(); });
+
 			if(o.pauseOnHover) {
 				$this.hover(
 					function() {
