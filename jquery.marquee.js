@@ -55,6 +55,18 @@
 				o.speed = o.speed / 2;
 			}
 
+			function pause() {
+				if($.fn.pause) {
+					$marqueeWrapper.pause();
+				}
+			}
+
+			function resume() {
+				if($.fn.resume) {
+					$marqueeWrapper.resume();
+				}
+			}
+
 			//Animate recursive method
 			var animate = function() {
 				if(!o.duplicated) {
@@ -77,22 +89,11 @@
 			};
 			
 			//bind pause and resume events
-			$this.on('pause', function(){ $marqueeWrapper.pause(); });
-			$this.on('resume', function(){ $marqueeWrapper.resume(); });
+			$this.on('pause', pause);
+			$this.on('resume', resume);
 
 			if(o.pauseOnHover) {
-				$this.hover(
-					function() {
-						if($.fn.pause) {
-							$marqueeWrapper.pause();
-						}
-					},
-					function() {
-						if($.fn.resume) {
-							$marqueeWrapper.resume();
-						}
-					}
-				);
+				$this.hover(pause, resume);
 			}
 			//Starts the recursive method
 			setTimeout(animate, o.delayBeforeStart);
