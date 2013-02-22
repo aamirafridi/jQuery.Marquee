@@ -1,7 +1,7 @@
 jQuery-Marquee
 ==============
 
-jQuery plugin to scroll the text like the old traditional marquee
+A **1.3kb** jQuery plugin to scroll the text like the old traditional marquee
 
 Update (22 Feb 2013):
 ---------------------
