@@ -35,11 +35,14 @@
 					$mwo.trigger('resume');
 				});
 				//toggle
-				$('.toggle').hover(function(){
+				$('.toggle').hover(function(e){
 					$mwo.trigger('pause');
 				},function(){
 					$mwo.trigger('resume');
-				});
+				})
+				.click(function(e){
+					e.preventDefault();
+				})
 			});
 		</script>
 		<style type="text/css">
