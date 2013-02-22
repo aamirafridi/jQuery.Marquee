@@ -76,6 +76,20 @@
 				});
 			};
 			
+			if(o.pauseOnHover) {
+				$this.hover(
+					function() {
+						if($.fn.pause) {
+							$marqueeWrapper.pause();
+						}
+					},
+					function() {
+						if($.fn.resume) {
+							$marqueeWrapper.resume();
+						}
+					}
+				);
+			}
 			//Starts the recursive method
 			setTimeout(animate, o.delayBeforeStart);
 	
@@ -93,6 +107,8 @@
 		//'left' or 'right'
 		direction: 'left',
 		//true or false - should the marquee be duplicated to show an effect of continues flow
-		duplicated: false
+		duplicated: false,
+		//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
+		pauseOnHover: false
 	};
 })(jQuery);

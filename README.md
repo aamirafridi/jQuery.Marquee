@@ -3,6 +3,10 @@ jQuery-Marquee
 
 jQuery plugin to scroll the text like the old traditional marquee
 
+Update (22 Feb 2013):
+---------------------
+ - pauseOnHover option added. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
+
 Update (20 Feb 2013):
 --------------------
  - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
@@ -15,6 +19,7 @@ Options:
  - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000
  - **direction:** Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'.
  - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
+ - **pauseOnHover:** true or false - pause the animation on mouse hover. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
 
 Events:
 ------
