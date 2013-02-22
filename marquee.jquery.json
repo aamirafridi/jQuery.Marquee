@@ -17,7 +17,7 @@
   "dependencies": {
     "jquery": ">=1.6.4"
   },
-  "homepage": "https://aamirafridi.com/jquery/jquery-marquee-plugin",
+  "homepage": "http://aamirafridi.com/jquery/jquery-marquee-plugin",
   "docs": "https://github.com/aamirafridi/jQuery.Marquee/blob/master/README.md",
   "demo": "http://jquery.aamirafridi.com/jquerymarquee/",
   "download": "https://github.com/aamirafridi/jQuery.Marquee/archive/master.zip"
