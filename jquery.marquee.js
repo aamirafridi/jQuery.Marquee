@@ -58,12 +58,16 @@
 			function pause() {
 				if($.fn.pause) {
 					$marqueeWrapper.pause();
+					//fire event
+					$this.trigger('paused');
 				}
 			}
 
 			function resume() {
 				if($.fn.resume) {
 					$marqueeWrapper.resume();
+					//fire event
+					$this.trigger('resumed');
 				}
 			}
 
