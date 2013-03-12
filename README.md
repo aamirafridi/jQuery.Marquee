@@ -47,7 +47,7 @@ Use:
 ###CSS:
 ```css
 .marquee {
-  width: 300px; /* the plugin works for responsive layouts so if width is not necessary */
+  width: 300px; /* the plugin works for responsive layouts so width is not necessary */
   overflow: hidden;
   border:1px solid #ccc;
 }
