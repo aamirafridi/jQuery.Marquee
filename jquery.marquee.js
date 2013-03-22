@@ -50,7 +50,7 @@
 			//formula is to: (Width of the text node / Width of the main container) * speed;
 			o.speed = ((parseInt(elWidth,10) + parseInt(containerWidth,10)) / parseInt(containerWidth,10)) * o.speed;
 
-			//if duplicated than double the speed
+			//if duplicated than reduce the speed
 			if(o.duplicated) {
 				o.speed = o.speed / 2;
 			}
