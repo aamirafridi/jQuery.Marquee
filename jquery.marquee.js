@@ -88,7 +88,12 @@
 					//fire event
 					$this.trigger('finished');
 					//animate again
-					animate();
+					if(o.pauseOnCycle) {
+						setTimeout(animate, o.delayBeforeStart);
+					}
+					else {
+						animate();
+					}
 				});
 			};
 			
@@ -118,6 +123,8 @@
 		//true or false - should the marquee be duplicated to show an effect of continues flow
 		duplicated: false,
 		//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
-		pauseOnHover: false
+		pauseOnHover: false,
+		//on cycle pause the marquee
+		pauseOnCycle: false
 	};
 })(jQuery);
