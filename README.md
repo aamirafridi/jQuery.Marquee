@@ -5,7 +5,7 @@ A **1.3kb** jQuery plugin to scroll the text like the old traditional marquee
 
 Update (21 Aug 2013):
 ---------------------
-If you want to hide the marquee for certain devices, try using ``` visibility: hidden``` with ``` height: 0``` instead of ``` display: none``` because jQuery cannot calculate with width etc of hidden elements.
+If you want to hide the marquee for certain devices, try using ``` visibility: hidden``` with ``` height: 0``` & ```position: absolute``` instead of ``` display: none``` because jQuery cannot calculate with width etc of hidden elements.
 For more details: 
  - https://github.com/aamirafridi/jQuery.Marquee/issues/9
  - http://stackoverflow.com/questions/1841124/find-the-potential-width-of-a-hidden-element
