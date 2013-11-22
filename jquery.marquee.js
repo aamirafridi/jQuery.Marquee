@@ -32,7 +32,7 @@
 			
 			//check if element has data attributes. They have top priority
 			o = $.extend({}, o, $this.data());
-			console.log(o);
+
 			//Shortcut to see if direction is upward or downward
 			verticalDir = o.direction == 'up' || o.direction == 'down';
 			
@@ -158,7 +158,6 @@
 				$this.hover(pause, resume);
 			}
 			//Starts the recursive method
-			if(o.direction=='down') console.log(o);
 			setTimeout(animate, o.delayBeforeStart);
 	
 		});
