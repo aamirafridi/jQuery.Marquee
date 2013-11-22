@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="https://rawgithub.com/tobia/Pause/master/jquery.pause.js"></script>
-
-		<script src="https://rawgithub.com/aamirafridi/jQuery.Marquee/master/jquery.marquee.min.js"></script>
+		<script src="https://rawgithub.com/aamirafridi/jQuery.Marquee/master/jquery.marquee.min.js?v=1"></script>
 		<script>
 			$(function(){
 				var $mwo = $('.marquee-with-options');
@@ -23,6 +23,12 @@
 					duplicated: true,
 					//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
 					pauseOnHover: true
+				});
+				
+				//Direction upward
+				$('.marquee-vert').marquee({
+					direction: 'up',
+					speed: 1500
 				});
 
 				//pause and resume links
@@ -65,7 +71,10 @@
 				margin-bottom: 10px;
 			}
 
-			.marquee, .marquee-with-options {
+			.marquee,
+			.marquee-with-options,
+			.marquee-vert-before,
+			.marquee-vert {
 			  width: 300px;
 			  overflow: hidden;
 			  border:1px solid #ccc;
@@ -82,10 +91,8 @@
 		<ul>
 			<li><b>beforeStarting:</b> Event will be fired on the element before animation starts.</li>
 			<li><b>finished:</b> Event will be fired on the element after the animation finishes.</li>
-			<li><b>pause:</b> Fire/trigger this event on the element when you want to pause the animation, for example when you click/hover a link.</li>
-			<li><b>paused:</b> Event will be fired on the element when the animation is paused.</li>
-			<li><b>resume:</b> Fire/trigger this event on the element when you want to resume, the paused animation.</li>
-			<li><b>resumed:</b> Event will be fired on the element when the animation is resumed.</li>
+			<li><b>pause:</b> Fire this event on the element when you want to pause the animation, for example when you click/hover a link.</li>
+			<li><b>resume:</b> Fire this event on the element when you want to resume, the paused animation.</li>
 		</ul>
 
 		<h2>Options</h2>
@@ -93,7 +100,7 @@
 			<li><b>speed:</b> Speed in milliseconds in which you want your text to travel with width of your main container. Default is 10000.</li>
 			<li><b>gap:</b> Gap in pixels between the tickers. Default is 20</li>
 			<li><b>delayBeforeStart:</b> Time in milliseconds before the marquee starts animating. Default is 1000</li>
-			<li><b>direction:</b> Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'</li>
+			<li><b>direction:</b> Direction towards which the marquee will animate 'left', 'right' or 'up'. Default is 'left'</li>
 			<li><b>duplicated:</b> true or false - should the marquee be duplicated to show an effect of continues flow. Default is false</li>
 			<li><b>pauseOnHover:</b> on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause. Default is false</li>
 		</ul>
@@ -108,7 +115,7 @@
 		<h3>Options as data attributes</h3>
 		<div data-speed="2000" data-gap="30" data-direction="right" class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 		
-		<h3>Overwrite the default options with following.</h3>
+		<h3>Overwrite the default options with following</h3>
 <pre>
 $('.marquee-with-options').marquee({
 	speed: 5000,
@@ -116,12 +123,55 @@ $('.marquee-with-options').marquee({
 	delayBeforeStart: 0,
 	direction: 'left',
 	duplicated: true,
-	<b>pauseOnHover: true</b>
+	pauseOnHover: true
 });
 </pre>
 		<div class='marquee-with-options'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 
 		<a class='pause' href='#'>Pause the above animation</a> | <a class='resume' href='#'>Resume the paused animation</a> | <a class='toggle' href='#'>Pause on hover this link</a>
 		<br/><br/>
+		
+
+		<h3>Direction vertical with default options</h3>
+<pre>
+$('.marquee-vert').marquee({
+	direction: 'up',
+	speed: 1500
+});
+</pre>
+		<h4>Before</h4>
+		<div class='marquee-vert-before'>Nascetur suscipit distinctio optio commodi repudiandae aut exercitationem mauris. Blanditiis conubia hic dolorum! Vitae varius adipisci facilisis.</div>
+		
+		<h4>After</h4>
+		<div class='marquee-vert'>Nascetur suscipit distinctio optio commodi repudiandae aut exercitationem mauris. Blanditiis conubia hic dolorum! Vitae varius adipisci facilisis.</div>
+
+		<h3>With direction 'down' (using data attributes)</h3>	
+		<div class='marquee-vert' data-delayBeforeStart=2000 data-direction='down' data-duplicated='true'>Nascetur suscipit distinctio optio commodi repudiandae aut exercitationem mauris. Blanditiis conubia hic dolorum! Vitae varius adipisci facilisis.</div>
+		
+
+		<h3>Direction vertical with duplicated option true (using data attributes) and height assigned using CSS</h3>
+		<small style="font-style: italic">Inspect the following marquee to see data attributes and style attribute</small><br><br>
+
+		<div class='marquee-vert' style='height:30px' data-gap=0 data-speed=3000 data-direction='up' data-duplicated='true'><b>Starts here</b> Nascetur suscipit distinctio optio commodi repudiandae aut exercitationem mauris. Blanditiis conubia hic dolorum! Vitae varius adipisci facilisis, laudantium ratione. Wisi! Quidem tortor, quisquam earum! Pretium necessitatibus.</div>
+		
+		<h3>With pauseOnHover and pauseOnCycle options</h3>	
+		<div class='marquee-vert' data-direction='down' data-pauseOnHover='true' data-pauseOnCycle='true'>Nascetur suscipit distinctio optio commodi repudiandae aut exercitationem mauris. Blanditiis conubia hic dolorum! Vitae varius adipisci facilisis.</div>
+		
+		
+		
+		
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4142584-4']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+
+<br><br>
 	</body>
 </html>
