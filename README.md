@@ -1,7 +1,12 @@
 jQuery-Marquee
 ==============
 
-A **1.3kb** jQuery plugin to scroll the text like the old traditional marquee
+A **2.2kb** jQuery plugin to scroll the text like the old traditional marquee
+
+
+Update (22 Nov 2013):
+---------------------
+Now plugin supports the 'up' and 'down' directions. Please have a look at the example to see how to use.
 
 Update (21 Aug 2013):
 ---------------------
@@ -24,7 +29,7 @@ Options:
  - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.
  - **gap:** Gap in pixels between the tickers. Default is 20.
  - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000
- - **direction:** Direction towards which the marquee will animate 'left' or 'right'. Default is 'left'.
+ - **direction:** Direction towards which the marquee will animate 'left', 'right', 'up' or 'down' (although I am not sure where can one use the 'down' direction). Default is 'left'.
  - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
  - **pauseOnHover:** true or false - pause the animation on mouse hover. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
 
