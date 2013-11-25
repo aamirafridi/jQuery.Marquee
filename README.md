@@ -46,7 +46,7 @@ Demo & blog post:
 -----
  - **Demo:** http://jquery.aamirafridi.com/jquerymarquee/
  - **Blog post:** http://aamirafridi.com/jquery/jquery-marquee-plugin
-
+ - **jSfiddle:** http://jsfiddle.net/aamir/jc7F3/1/ to help you explain any issues you might face.
 Use:
 ----
 
