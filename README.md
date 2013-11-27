@@ -30,6 +30,7 @@ Update (20 Feb 2013):
 
 Options:
 --------
+ - **easing:** Requires jQuery easing plugin. Default is 'linear'.
  - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.
  - **gap:** Gap in pixels between the tickers. Default is 20.
  - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000
