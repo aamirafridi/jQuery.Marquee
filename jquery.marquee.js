@@ -79,7 +79,7 @@
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
                 /* adjust the animation speed according to the text length
-				   formula is to: (Height of the text node / Height of the main container) * speed; */
+		   formula is to: (Height of the text node / Height of the main container) * speed; */
                 o.speed = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.speed;
 
             } else {
@@ -90,7 +90,7 @@
                 containerWidth = $this.width();
 
                 /* adjust the animation speed according to the text length
-				   formula is to: (Width of the text node / Width of the main container) * speed; */
+		   formula is to: (Width of the text node / Width of the main container) * speed; */
                 o.speed = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.speed;
             }
 
@@ -119,16 +119,12 @@
             var animate = function () {
                 if (verticalDir) {
                     if (o.duplicated) {
-                        $marqueeWrapper.css({
-                            'margin-top': o.direction == 'up' ? 0 : '-' + elHeight + 'px'
-                        });
+                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
                         };
                     } else {
-                        $marqueeWrapper.css({
-                            'margin-top': o.direction == 'up' ? containerHeight : '-' + elHeight + 'px'
-                        });
+                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight : '-' + elHeight + 'px');
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight
                         };
@@ -151,7 +147,7 @@
                 $this.trigger('beforeStarting');
 
                 //Start animating
-                $marqueeWrapper.animate(animationCss, o.speed, 'linear', function () {
+                $marqueeWrapper.animate(animationCss, o.speed, o.easing, function () {
                     //fire event
                     $this.trigger('finished');
                     //animate again
@@ -178,6 +174,8 @@
 
     // Public: plugin defaults options
     $.fn.marquee.defaults = {
+	//requires jQuery easing plugin. Default is 'linear'
+	easing: 'linear',
         //speed in milliseconds of the marquee
         speed: 5000,
         //gap in pixels between the tickers
