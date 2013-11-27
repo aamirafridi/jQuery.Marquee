@@ -4,6 +4,10 @@ jQuery-Marquee
 A **2.2kb** jQuery plugin to scroll the text like the old traditional marquee
 
 
+Update (27 Nov 2013):
+---------------------
+Easing option added. Requires jQuery easing plugin.
+
 Update (22 Nov 2013):
 ---------------------
 Now plugin supports the 'up' and 'down' directions. Please have a look at the example to see how to use.
