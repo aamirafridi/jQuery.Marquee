@@ -32,7 +32,7 @@ Options:
 --------
  - **easing:** Requires jQuery easing plugin. Default is 'linear'.
  - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.
- - **gap:** Gap in pixels between the tickers. Default is 20.
+ - **gap:** Gap in pixels between the tickers. Default is 20. This option works only if 'duplicated' opetion is set to true.
  - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000
  - **direction:** Direction towards which the marquee will animate 'left', 'right', 'up' or 'down' (although I am not sure where can one use the 'down' direction). Default is 'left'.
  - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
