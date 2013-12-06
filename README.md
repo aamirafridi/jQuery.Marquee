@@ -58,6 +58,13 @@ Usage:
 <div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 ```
 
+or use this if you want to start the plugin with no options but use data attributes:
+
+```html
+<div class='marquee' data-speed='5000' data-gap='10' dupilcated='true' >Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
+```
+
+
 ###CSS:
 ```css
 .marquee {
