@@ -102,7 +102,7 @@ $('.marquee').marquee({
 ```javascript
 var $mq = $('.marquee').marquee();
 $('.someLink').click(function(){
-  $mq.trigger('pause')
+  $mq.trigger('pause');
 });
 ```
 
