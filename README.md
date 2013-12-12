@@ -61,7 +61,7 @@ Usage:
 or use this if you want to start the plugin with no options but use data attributes:
 
 ```html
-<div class='marquee' data-speed='5000' data-gap='10' dupilcated='true' >
+<div class='marquee' data-speed='5000' data-gap='10' data-dupilcated='true' >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit END.
 </div>
 ```
