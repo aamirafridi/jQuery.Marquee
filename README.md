@@ -5,7 +5,13 @@ A **3.5kb** minified jQuery plugin to scroll the text like the old traditional m
 
 Update (20 Dec 2013):
 --------------------
-Now with CSS3 Support for best performance :) For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/.
+Now the plugin will detect if browser supports CSS3 animations than it will animate the element using CSS3 which will perform much better than animating using jQuery.
+
+The ```pauseOnHover``` also works using CSS3. The plugin just prepares the setup and required CSS3 animation CSS.
+
+Due to some reasons if you want plugin to animate always using jQuery than you need to set ```allowCss3Support``` option to ```false```. Also an extra option ```css3easing``` is added.
+
+For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
 
 **Update (27 Nov 2013):**
 Easing option added. Requires jQuery easing plugin.
