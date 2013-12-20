@@ -13,24 +13,7 @@ Due to some reasons if you want plugin to animate always using jQuery than you n
 
 For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
 
-**Update (27 Nov 2013):**
-Easing option added. Requires jQuery easing plugin.
-
-**Update (22 Nov 2013):**
-Now plugin supports the 'up' and 'down' directions. Please have a look at the example to see how to use.
-
-**Update (21 Aug 2013):**
-If you want to hide the marquee for certain devices, try using ``` visibility: hidden``` with ``` height: 0``` & ```position: absolute``` instead of ``` display: none``` because jQuery cannot calculate with width etc of hidden elements.
-For more details:
- - https://github.com/aamirafridi/jQuery.Marquee/issues/9
- - http://stackoverflow.com/questions/1841124/find-the-potential-width-of-a-hidden-element
-
-**Update (22 Feb 2013):**
- - pauseOnHover option added. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
-
-**Update (20 Feb 2013):**
- - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
- - 'duplicated' option added. See the details below in Options section.
+----
 
 Options:
 --------
@@ -123,3 +106,27 @@ $('.someLink').click(function(){
   $mq.trigger('resume');
 });
 ```
+
+---
+
+Old updates:
+-----------
+
+**Update (27 Nov 2013):**
+Easing option added. Requires jQuery easing plugin.
+
+**Update (22 Nov 2013):**
+Now plugin supports the 'up' and 'down' directions. Please have a look at the example to see how to use.
+
+**Update (21 Aug 2013):**
+If you want to hide the marquee for certain devices, try using ``` visibility: hidden``` with ``` height: 0``` & ```position: absolute``` instead of ``` display: none``` because jQuery cannot calculate with width etc of hidden elements.
+For more details:
+ - https://github.com/aamirafridi/jQuery.Marquee/issues/9
+ - http://stackoverflow.com/questions/1841124/find-the-potential-width-of-a-hidden-element
+
+**Update (22 Feb 2013):**
+```pauseOnHover``` option added. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
+
+**Update (20 Feb 2013):**
+ - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
+ - 'duplicated' option added. See the details below in Options section.
