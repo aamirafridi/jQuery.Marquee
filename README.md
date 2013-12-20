@@ -11,6 +11,8 @@ The ```pauseOnHover``` also works using CSS3. The plugin just prepares the setup
 
 Due to some reasons if you want plugin to animate always using jQuery than you need to set ```allowCss3Support``` option to ```false```. Also an extra option ```css3easing``` is added.
 
+**PLEASE report any bugs you find.**
+
 For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
 
 ----
