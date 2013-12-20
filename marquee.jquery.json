@@ -3,7 +3,7 @@
   "title": "jQuery Marquee with CSS3 Support",
   "description": "jQuery plugin to scroll the text like the old traditional marquee. NOW with CSS3 support.",
   "keywords": ["marquee", "animate", "scroll", "ticker", "news", "effect", "ui", "animation", "css3", "keyframes"],
-  "version": "1.0",
+  "version": "1.0.0",
   "author": {
     "name": "AamirAfridi.com",
     "email" : "aamirafridi@gmail.com"
