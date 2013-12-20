@@ -176,7 +176,6 @@
             
                 if(css3AnimationIsSupported) {
                     animationCss3Str = animationName + ' ' + o.duration/1000 + 's ' + o.delayBeforeStart/1000 + 's infinite ' + o.css3easing;
-                    console.log('animationCss3Str',animationCss3Str)
                 }
             }
                 //Animate recursive method
