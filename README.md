@@ -1,11 +1,13 @@
-jQuery-Marquee
+jQuery-Marquee NOW with CSS3 Animation Support
 ==============
 
-A **2.2kb** minified jQuery plugin to scroll the text like the old traditional marquee
+A **3.5kb** minified jQuery plugin to scroll the text like the old traditional marquee
 
+Update (20 Dec 2013):
+--------------------
+Now with CSS3 Support for best performance :) For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/.
 
-Update (27 Nov 2013):
----------------------
+**Update (27 Nov 2013):**
 Easing option added. Requires jQuery easing plugin.
 
 **Update (22 Nov 2013):**
@@ -26,13 +28,16 @@ For more details:
 
 Options:
 --------
- - **easing:** Requires jQuery easing plugin. Default is 'linear'.
- - **speed:** Speed in milliseconds of the marquee. Please make note that same speed value will react differently for text with different lengths. Default is 10000.
- - **gap:** Gap in pixels between the tickers. Default is 20. This option works only if 'duplicated' option is set to true.
- - **delayBeforeStart:** Time in milliseconds before the marquee starts animating. Default is 1000
- - **direction:** Direction towards which the marquee will animate 'left', 'right', 'up' or 'down' (although I am not sure where can one use the 'down' direction). Default is 'left'.
- - **duplicated:** true or false - should the marquee be duplicated to show an effect of continues flow. Default is false.
- - **pauseOnHover:** true or false - pause the animation on mouse hover. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
+ - **allowCss3Support** If you wish the plugin should animate always using jQuery animate method even if browser supporst CSS3 animations. Default is ```true```
+ - **css3easing** Works when ```allowCss3Support``` is set to ```true``` - for full list see: http://www.w3.org/TR/2013/WD-css3-transitions-20131119/#transition-timing-function . Default is ```'linear'```
+ - **easing** Requires jQuery easing plugin http://gsgd.co.uk/sandbox/jquery/easing/. Default is ```'linear'```
+ - **delayBeforeStart** Time in milliseconds before the marquee starts animating. Default is ```1000```
+ - **direction** Direction towards which the marquee will animate ```'left' / 'right' / 'up' / 'down'```. Default is ```'left'```. Todo: need to change this to ```ltr/rtl``` etc
+ - **duplicated** Should the marquee be duplicated to show an effect of continues flow. Use this only with the text is shorter than the container. Default is ```false```
+ - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```. This option is the old ```speed``` option which still works but duration is the more word.
+ - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default is ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
+ - **pauseOnHover** On hover pause the marquee. If browser supports CSS3 and ```allowCss3Support``` is set to ```true``` than it will be done using CSS3. Otherwise this will be done using jQuery plugin https://github.com/tobia/Pause. Default is ```false```
+ - **pauseOnCycle** On cycle, pause the marquee for ```delayBeforeStart``` milliseconds.
 
 Events:
 ------
@@ -61,7 +66,7 @@ Usage:
 or use this if you want to start the plugin with no options but use data attributes:
 
 ```html
-<div class='marquee' data-speed='5000' data-gap='10' data-dupilcated='true' >
+<div class='marquee' data-duration='5000' data-gap='10' data-dupilcated='true' >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit END.
 </div>
 ```
@@ -85,7 +90,7 @@ or use this if you want to start the plugin with no options but use data attribu
 */
 $('.marquee').marquee({
 	//speed in milliseconds of the marquee
-	speed: 15000,
+	duration: 15000,
 	//gap in pixels between the tickers
 	gap: 50,
 	//time in milliseconds before the marquee will start animating
