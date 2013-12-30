@@ -39,7 +39,7 @@
             //check if element has data attributes. They have top priority
             o = $.extend({}, o, $this.data());
 
-            //since speed option is changed to duration, to still support speed for those who are already using it
+            //since speed option is changed to duration, to support speed for those who are already using it
             o.duration = o.speed || o.duration;
 
             //Shortcut to see if direction is upward or downward
