@@ -159,7 +159,7 @@
                         keyframeString = '';
                     
                 //Check css3 support
-                if( elm.style.animationCssStr ) { css3AnimationIsSupported = true; }
+                if( elm.style[animationCssStr] ) { css3AnimationIsSupported = true; }
 
                 if( css3AnimationIsSupported === false ) {
                     for( var i = 0; i < domPrefixes.length; i++ ) {
