@@ -149,23 +149,25 @@
 
             if(o.allowCss3Support) {
                     var
-                        elm = document.createElement('div'),
-                        animationCssStr = 'animation',
+                        elm = document.body || document.createElement('div'),
                         animationName = 'marqueeAnimation-' + Math.floor(Math.random()*10000000),
                         domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
-                        animationString = '',
+                        animationString = 'animation',
                         animationCss3Str = '',
                         $styles = $('style'),
                         keyframeString = '';
                     
                 //Check css3 support
-                if( elm.style[animationCssStr] ) { css3AnimationIsSupported = true; }
+                if( elm.style.animation ) {
+                    keyframeString = '@keyframes ' + animationName + ' ';
+                    css3AnimationIsSupported = true;
+                }
 
                 if( css3AnimationIsSupported === false ) {
                     for( var i = 0; i < domPrefixes.length; i++ ) {
                         if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
                             var prefix = '-' + domPrefixes[ i ].toLowerCase() + '-';
-                            animationString = prefix + 'animation';
+                            animationString = prefix + animationString;
                             playState = prefix + playState;
                             keyframeString = '@'+prefix+'keyframes ' + animationName + ' ';
                             css3AnimationIsSupported = true;
