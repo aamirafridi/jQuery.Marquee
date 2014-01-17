@@ -107,7 +107,15 @@
             if (o.duplicated) {
                 o.duration = o.duration / 2;
             }
-
+            
+            function prefixedEvent(element, type, callback) {
+		var pfx = ["webkit", "moz", "MS", "o", ""];
+		for (var p = 0; p < pfx.length; p++) {
+			if (!pfx[p]) type = type.toLowerCase();
+			element.addEventListener(pfx[p]+type, callback, false);
+		}
+            }
+            
             function objToString (obj) {
                 var tabjson=[];
                 for (var p in obj) {
@@ -224,6 +232,11 @@
                     else {
                         $('head').append('<style>' + keyframeCss + '</style>');
                     }
+                    
+                    //Animation iteration event
+                    prefixedEvent($marqueeWrapper[0], "AnimationIteration", function(){
+			$this.trigger('finished');
+                    });
                 }
                 else {
                     //Start animating
