@@ -8,9 +8,9 @@ Update (24 Jan 2014):
 
 **Note: people who been asking me how to use this plugin with content being loaded with Ajax, please read notes about this update.**
 
- - New methods added, so now after you start the plugin using ```var $mq = $('.marquee').marquee();```, then you can pause, resume, toggle(pause, resume) and destroy methods e.g to remove the marquee plugin from your element simply use ```$mq.marquee('destroy');```.
-If you want to use use Ajax with this plugin i.e you want to change the content after you apply this plugin, please see the examples in demo page (link provided below).
-Similarly you can use pause the marquee any time using ```$mq.marquee('pause');```.
+ - New methods added, so now after you start the plugin using ```var $mq = $('.marquee').marquee();```, then you can pause, resume, toggle(pause, resume) and destroy methods e.g to remove the marquee plugin from your element simply use ```$mq.marquee('destroy');```. Similarly you can use pause the marquee any time using ```$mq.marquee('pause');```.
+ - If you want to use use **Ajax** with this plugin i.e you want to change the content after you apply this plugin, please see the examples in demo page (link provided below).
+
  - Also made some changes so this plugin works with old versions of jQuery. I have tested it with jQuery 1.3.2 but quite sure it should work with some previous versions of jQuery.
 
 **PLEASE report any bugs you find.**
