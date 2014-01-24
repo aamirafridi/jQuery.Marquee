@@ -37,6 +37,10 @@
                     return '{' + tabjson.join(',') + '}';
                 },
 
+                _startAnimationWithDelay = function () {
+                    $this.timer = setTimeout(animate, o.delayBeforeStart);
+                },
+
                 //Public methods
                 methods = {
                     pause: function () {
@@ -84,10 +88,6 @@
                         setTimeout(function () {
                             $this.css('visibility', 'visible');
                         }, 0);
-                    },
-
-                    startAnimationWithDelay: function () {
-                        $this.timer = setTimeout(animate, o.delayBeforeStart);
                     }
                 };
 
@@ -286,7 +286,7 @@
                         $this.trigger('finished');
                         //animate again
                         if (o.pauseOnCycle) {
-                            methods.startAnimationWithDelay();
+                            _startAnimationWithDelay();
                         } else {
                             animate();
                         }
@@ -309,7 +309,7 @@
                 animate();
             } else {
                 //Starts the recursive method
-                methods.startAnimationWithDelay();
+                _startAnimationWithDelay();
             }
 
         });
