@@ -16,28 +16,115 @@
                 verticalDir,
                 elWidth,
                 playState = 'animation-play-state',
-                css3AnimationIsSupported = false;
+                css3AnimationIsSupported = false,
 
-            //For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
-            if (typeof $this.data().delaybeforestart !== 'undefined') {
-                $this.data().delayBeforeStart = $this.data().delaybeforestart;
-                delete $this.data().delaybeforestart;
-            }
-            if (typeof $this.data().pauseonhover !== 'undefined') {
-                $this.data().pauseOnHover = $this.data().pauseonhover;
-                delete $this.data().pauseonhover;
-            }
-            if (typeof $this.data().pauseoncycle !== 'undefined') {
-                $this.data().pauseOnCycle = $this.data().pauseoncycle;
-                delete $this.data().pauseoncycle;
-            }
-            if (typeof $this.data().allowcss3support !== 'undefined') {
-                $this.data().allowCss3Support = $this.data().allowcss3support;
-                delete $this.data().allowcss3support;
+                //Private methods
+                _prefixedEvent = function (element, type, callback) {
+                    var pfx = ["webkit", "moz", "MS", "o", ""];
+                    for (var p = 0; p < pfx.length; p++) {
+                        if (!pfx[p]) type = type.toLowerCase();
+                        element.addEventListener(pfx[p] + type, callback, false);
+                    }
+                },
+                _objToString = function (obj) {
+                    var tabjson = [];
+                    for (var p in obj) {
+                        if (obj.hasOwnProperty(p)) {
+                            tabjson.push(p + ':' + obj[p]);
+                        }
+                    }
+                    tabjson.push();
+                    return '{' + tabjson.join(',') + '}';
+                },
+
+                //Public methods
+                methods = {
+                    pause: function () {
+                        if (css3AnimationIsSupported && o.allowCss3Support) {
+                            $marqueeWrapper.css(playState, 'paused');
+                        } else {
+                            //pause using pause plugin
+                            if ($.fn.pause) {
+                                $marqueeWrapper.pause();
+                            }
+                        }
+                        //save the status
+                        $this.data('runningStatus', 'paused');
+                        //fire event
+                        $this.trigger('paused');
+                    },
+
+                    resume: function () {
+                        //resume using css3
+                        if (css3AnimationIsSupported && o.allowCss3Support) {
+                            $marqueeWrapper.css(playState, 'running');
+                        } else {
+                            //resume using pause plugin
+                            if ($.fn.resume) {
+                                $marqueeWrapper.resume();
+                            }
+                        }
+                        //save the status
+                        $this.data('runningStatus', 'resumed');
+                        //fire event
+                        $this.trigger('resumed');
+                    },
+
+                    toggle: function () {
+                        this[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
+                    },
+
+                    destroy: function () {
+                        //Clear timer
+                        clearTimeout($this.timer);
+                        //Just unwrap the elements that has been added using this plugin
+                        $this.css('visibility', 'hidden').html($this.find('.js-marquee:first'));
+                        //This is to prevent the sudden blink
+                        setTimeout(function () {
+                            $this.css('visibility', 'visible');
+                        }, 0);
+                    },
+
+                    startAnimationWithDelay: function () {
+                        $this.timer = setTimeout(animate, o.delayBeforeStart);
+                    }
+                };
+
+                //Check for methods
+            if (typeof options === 'string') {
+                if ($.isFunction(methods[options])) {
+                    //Following two IF statements to support public methods
+                    if (!$marqueeWrapper) {
+                        $marqueeWrapper = $this.find('.js-marquee-wrapper');
+                    }
+                    if ($this.data('css3AnimationIsSupported') === true) {
+                        css3AnimationIsSupported = true;
+                    }
+                    methods[options]();
+                }
+                return;
             }
 
-            //check if element has data attributes. They have top priority
-            o = $.extend({}, o, $this.data());
+            /* Check if element has data attributes. They have top priority
+               For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
+               jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
+            var dataAttributes = {}, attr;
+            $.each(o, function (key, value) {
+                //Check if element has this data attribute
+                attr = $this.attr('data-' + key);
+                if (typeof attr !== 'undefined') {
+                    //Now check if value is boolean or not
+                    switch (attr) {
+                        case 'true':
+                            attr = true;
+                            break;
+                        case 'false':
+                            attr = false;
+                            break;
+                    }
+                    o[key] = attr;
+                }
+            });
 
             //since speed option is changed to duration, to support speed for those who are already using it
             o.duration = o.speed || o.duration;
@@ -54,7 +141,7 @@
             //Make copy of the element
             var $el = $this.find('.js-marquee').css({
                 'margin-right': o.gap,
-                'float': 'left'
+                    'float': 'left'
             });
 
             if (o.duplicated) {
@@ -76,8 +163,8 @@
                 //Change the CSS for js-marquee element
                 $this.find('.js-marquee').css({
                     'float': 'none',
-                    'margin-bottom': o.gap,
-                    'margin-right': 0
+                        'margin-bottom': o.gap,
+                        'margin-right': 0
                 });
 
                 //Remove bottom margin from 2nd element if duplicated
@@ -87,8 +174,8 @@
 
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
-                /* adjust the animation speed according to the text length
-		   formula is to: (Height of the text node / Height of the main container) * speed; */
+                // adjust the animation speed according to the text length
+                // formula is to: (Height of the text node / Height of the main container) * speed;
                 o.duration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
 
             } else {
@@ -98,8 +185,8 @@
                 //container width
                 containerWidth = $this.width();
 
-                /* adjust the animation speed according to the text length
-		   formula is to: (Width of the text node / Width of the main container) * speed; */
+                // adjust the animation speed according to the text length
+                // formula is to: (Width of the text node / Width of the main container) * speed;
                 o.duration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
             }
 
@@ -107,95 +194,49 @@
             if (o.duplicated) {
                 o.duration = o.duration / 2;
             }
-            
-            function prefixedEvent(element, type, callback) {
-		var pfx = ["webkit", "moz", "MS", "o", ""];
-		for (var p = 0; p < pfx.length; p++) {
-			if (!pfx[p]) type = type.toLowerCase();
-			element.addEventListener(pfx[p]+type, callback, false);
-		}
-            }
-            
-            function objToString (obj) {
-                var tabjson=[];
-                for (var p in obj) {
-                    if (obj.hasOwnProperty(p)) {
-                        tabjson.push(p + ':' + obj[p]);
-                    }
-                } 
-                tabjson.push()
-                return '{'+tabjson.join(',')+'}';
-            }
 
-            function pause() {
-                //pause using css3
-                if(css3AnimationIsSupported && o.allowCss3Support) {
-                    return $marqueeWrapper.css(playState, 'paused');
-                }
+            if (o.allowCss3Support) {
+                var
+                elm = document.body || document.createElement('div'),
+                    animationName = 'marqueeAnimation-' + Math.floor(Math.random() * 10000000),
+                    domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+                    animationString = 'animation',
+                    animationCss3Str = '',
+                    $styles = $('style'),
+                    keyframeString = '';
 
-                //pause using pause plugin
-                if ($.fn.pause) {
-                    $marqueeWrapper.pause();
-                    //fire event
-                    $this.trigger('paused');
-                }
-            }
-
-            function resume() {
-                //resume using css3
-                if(css3AnimationIsSupported && o.allowCss3Support) {
-                    return $marqueeWrapper.css(playState, 'running');
-                }
-
-                //resume using pause plugin
-                if ($.fn.resume) {
-                    $marqueeWrapper.resume();
-                    //fire event
-                    $this.trigger('resumed');
-                }
-            }
-
-            if(o.allowCss3Support) {
-                    var
-                        elm = document.body || document.createElement('div'),
-                        animationName = 'marqueeAnimation-' + Math.floor(Math.random()*10000000),
-                        domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
-                        animationString = 'animation',
-                        animationCss3Str = '',
-                        $styles = $('style'),
-                        keyframeString = '';
-                    
                 //Check css3 support
-                if( elm.style.animation ) {
+                if (elm.style.animation) {
                     keyframeString = '@keyframes ' + animationName + ' ';
                     css3AnimationIsSupported = true;
                 }
 
-                if( css3AnimationIsSupported === false ) {
-                    for( var i = 0; i < domPrefixes.length; i++ ) {
-                        if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
-                            var prefix = '-' + domPrefixes[ i ].toLowerCase() + '-';
+                if (css3AnimationIsSupported === false) {
+                    for (var i = 0; i < domPrefixes.length; i++) {
+                        if (elm.style[domPrefixes[i] + 'AnimationName'] !== undefined) {
+                            var prefix = '-' + domPrefixes[i].toLowerCase() + '-';
                             animationString = prefix + animationString;
                             playState = prefix + playState;
-                            keyframeString = '@'+prefix+'keyframes ' + animationName + ' ';
+                            keyframeString = '@' + prefix + 'keyframes ' + animationName + ' ';
                             css3AnimationIsSupported = true;
                             break;
                         }
                     }
                 }
-            
-                if(css3AnimationIsSupported) {
-                    animationCss3Str = animationName + ' ' + o.duration/1000 + 's ' + o.delayBeforeStart/1000 + 's infinite ' + o.css3easing;
+
+                if (css3AnimationIsSupported) {
+                    animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's infinite ' + o.css3easing;
+                    $this.data('css3AnimationIsSupported', true);
                 }
             }
-                //Animate recursive method
+            //Animate recursive method
             var animate = function () {
                 if (verticalDir) {
                     if (o.duplicated) {
                         $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
-                        }
+                        };
                     } else {
                         $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
                         animationCss = {
@@ -218,56 +259,56 @@
 
                 //fire event
                 $this.trigger('beforeStarting');
-          
+
                 //If css3 support is available than do it with css3, otherwise use jQuery as fallback
-                if(css3AnimationIsSupported) {
+                if (css3AnimationIsSupported) {
                     //Add css3 animation to the element
                     $marqueeWrapper.css(animationString, animationCss3Str);
-                    var keyframeCss = keyframeString + ' { 100%  '+ objToString(animationCss) +'}';
-                    
+                    var keyframeCss = keyframeString + ' { 100%  ' + _objToString(animationCss) + '}';
+
                     //Now add the keyframe animation to the head
-                    if($styles.length!=0) {
-                        $styles.last().append(keyframeCss)
-                    }
-                    else {
+                    if ($styles.length !== 0) {
+                        //Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
+                        $styles.filter(":last").append(keyframeCss);
+                    } else {
                         $('head').append('<style>' + keyframeCss + '</style>');
                     }
-                    
+
                     //Animation iteration event
-                    prefixedEvent($marqueeWrapper[0], "AnimationIteration", function(){
-			$this.trigger('finished');
+                    _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function () {
+                        $this.trigger('finished');
                     });
-                }
-                else {
+                } else {
                     //Start animating
                     $marqueeWrapper.animate(animationCss, o.duration, o.easing, function () {
                         //fire event
                         $this.trigger('finished');
                         //animate again
                         if (o.pauseOnCycle) {
-                            setTimeout(animate, o.delayBeforeStart);
+                            methods.startAnimationWithDelay();
                         } else {
                             animate();
                         }
                     });
                 }
+                //save the status
+                $this.data('runningStatus', 'resumed');
             };
 
             //bind pause and resume events
-            $this.bind('pause', pause);
-            $this.bind('resume', resume);
+            $this.bind('pause', methods.pause);
+            $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.hover(pause, resume);
+                $this.hover(methods.pause, methods.resume);
             }
 
             //If css3 animation is supported than call animate method at once
-            if(css3AnimationIsSupported && o.allowCss3Support) {
+            if (css3AnimationIsSupported && o.allowCss3Support) {
                 animate();
-            }
-            else {
+            } else {
                 //Starts the recursive method
-                setTimeout(animate, o.delayBeforeStart);
+                methods.startAnimationWithDelay();
             }
 
         });
