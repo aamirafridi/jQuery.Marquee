@@ -15,7 +15,7 @@ Update (24 Jan 2014):
 
 **PLEASE report any bugs you find.**
 
-For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
+For details please check the demos at: http://jquery.aamirafridi.com/jquerymarquee/
 
 ----
 
