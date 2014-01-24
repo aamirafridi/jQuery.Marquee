@@ -71,7 +71,8 @@
                     },
 
                     toggle: function () {
-                        this[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
+                        console.log(this)
+                        methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
                     },
 
                     destroy: function () {
@@ -300,7 +301,7 @@
             $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.hover(methods.pause, methods.resume);
+                $this.bind('mouseenter mouseleave', methods.toggle);
             }
 
             //If css3 animation is supported than call animate method at once
