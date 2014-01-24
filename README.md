@@ -21,7 +21,7 @@ Options:
  - **easing** Requires jQuery easing plugin http://gsgd.co.uk/sandbox/jquery/easing/. Default is ```'linear'```
  - **delayBeforeStart** Time in milliseconds before the marquee starts animating. Default is ```1000```
  - **direction** Direction towards which the marquee will animate ```'left' / 'right' / 'up' / 'down'```. Default is ```'left'```. Todo: need to change this to ```ltr/rtl``` etc
- - **duplicated** Should the marquee be duplicated to show an effect of continues flow. Use this only with the text is shorter than the container. Default is ```false```
+ - **duplicated** Should the marquee be duplicated to show an effect of continuous flow. Use this only with the text is shorter than the container. Default is ```false```
  - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```. This option is the old ```speed``` option which still works but duration is the more correct word.
  - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default is ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
  - **pauseOnHover** On hover pause the marquee. If browser supports CSS3 and ```allowCss3Support``` is set to ```true``` than it will be done using CSS3. Otherwise this will be done using jQuery plugin https://github.com/tobia/Pause. Default is ```false```
@@ -45,7 +45,7 @@ These methods can be used like this:
  - **pause**: To pause the marquee at any time.
  - **resume**: To resume the marquee after being paused previously.
  - **toggle**: To toggle between pause and resume methods.
- - **destroy**: To remove marquee plugin from your element. This method is usefull if you are loading/chainging the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided below).
+ - **destroy**: To remove marquee plugin from your element. This method is useful if you are loading/changing the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided below).
 
 Demo & blog post:
 -----
@@ -169,5 +169,5 @@ For more details:
 
 
 **Update (20 Feb 2013):**
- - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
+ - The plugin is improved to adjust the speed according to the length of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
  - 'duplicated' option added. See the details below in Options section.
