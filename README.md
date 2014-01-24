@@ -70,7 +70,7 @@ Usage:
 <div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
 ```
 
-or use this if you want to start the plugin with no options but use data attributes:
+or use this if you want to start the plugin with no options but want to use data attributes. You can use all the options listed above as data attributes. This is how you can use them:
 
 ```html
 <div class='marquee' data-duration='5000' data-gap='10' data-dupilcated='true' >
