@@ -127,6 +127,8 @@ $('.someLink').click(function(){
 
 ###How to use events:
 
+Check this example: http://jsfiddle.net/aamir/jc7F3/86/
+
 ```javascript
 $('.marquee')
     .bind('beforeStarting', function () {
