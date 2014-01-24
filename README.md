@@ -5,7 +5,7 @@ A **3.9kb** minified jQuery plugin to scroll the text like the old traditional m
 
 Update (24 Jan 2014):
 --------------------
- - New methods added, so now after you start the plugin using ```var $mq = $('.marquee').marquee();```, you can pause, resume, toggle(pause, resume) and destroy methods e.g to remove the marquee plugin from your element simply use ```$mq.marquee('destroy');```. Similarly you can use pause the marquee any time using ```$mq.marquee('pause');```.
+ - New methods added, so now after you start the plugin using ```var $mq = $('.marquee').marquee();```, then you can pause, resume, toggle(pause, resume) and destroy methods e.g to remove the marquee plugin from your element simply use ```$mq.marquee('destroy');```. Similarly you can use pause the marquee any time using ```$mq.marquee('pause');```.
  - Also made some changes so this plugin works with old versions of jQuery. I have tested it with jQuery 1.3.2 but quite sure it should work with some old previous versions of jQuery.
 
 **PLEASE report any bugs you find.**
