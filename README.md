@@ -1,15 +1,12 @@
 jQuery-Marquee with CSS3 Support
 ==============
 
-A **3.5kb** minified jQuery plugin to scroll the text like the old traditional marquee
+A **3.9kb** minified jQuery plugin to scroll the text like the old traditional marquee
 
-Update (20 Dec 2013):
+Update (24 Jan 2014):
 --------------------
-Now the plugin will detect if browser supports CSS3 animations than it will animate the element using CSS3 which will perform much better than animating using jQuery.
-
-The ```pauseOnHover``` also works using CSS3. The plugin just prepares the setup and required CSS3 animation CSS.
-
-Due to some reasons if you want plugin to animate always using jQuery than you need to set ```allowCss3Support``` option to ```false```. Also an extra option ```css3easing``` is added.
+ - New methods added, so now after you start the plugin using ```var $mq = $('.marquee').marquee();```, you can pause, resume, toggle(pause, resume) and destroy methods e.g to remove the marquee plugin from your element simply use ```$mq.marquee('destroy');```. Similarly you can use pause the marquee any time using ```$mq.marquee('pause');```.
+ - Also made some changes so this plugin works with old versions of jQuery. I have tested it with jQuery 1.3.2 but quite sure it should work with some old previous versions of jQuery.
 
 **PLEASE report any bugs you find.**
 
@@ -34,10 +31,21 @@ Events:
 ------
  - **beforeStarting:** Event will be fired on the element before animation starts.
  - **finished:** Event will be fired on the element after the animation finishes.
- - **pause:** Fire this event on the element when you want to pause the animation, for example when you click/hover a link.
  - **paused:** Event will be fired on the element when the animation is paused.
- - **resume:** Fire this event on the element when you want to resume, the paused animation.
  - **resumed:** Event will be fired on the element when the animation is resumed.
+
+Methods *(new)*:
+---------------
+
+These methods can be used like this:
+
+ - First initialize marquee with any options ```var $mq = $('.marquee').marquee();```
+ - Than at any time you can call following methods ```var $mq.marquee('NAME-OF-METHOD-AS-STRING');```
+
+ - **pause**: To pause the marquee at any time.
+ - **resume**: To resume the marquee after being paused previously.
+ - **toggle**: To toggle between pause and resume methods.
+ - **destroy**: To remove marquee plugin from your element. This method is usefull if you are loading/chainging the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided below).
 
 Demo & blog post:
 -----
@@ -73,12 +81,12 @@ or use this if you want to start the plugin with no options but use data attribu
 }
 ```
 
-###Apply plugin:
+###How to apply plugin:
 ```javascript
 /**
  * Example of starting a plugin with options.
- * I am just passing all the default options
- * so you can just start the plugin using $('.marquee').marquee();
+ * I am just passing some of the options in the following example.
+ * you can also start the plugin using $('.marquee').marquee(); with defaults
 */
 $('.marquee').marquee({
 	//speed in milliseconds of the marquee
@@ -94,20 +102,36 @@ $('.marquee').marquee({
 });
 ```
 
-###How to use events:
+###How to use methods:
 
 ```javascript
 var $mq = $('.marquee').marquee();
 $('.someLink').click(function(){
-  $mq.trigger('pause');
+  $mq.marquee('pause');
 });
 ```
 
 ```javascript
 var $mq = $('.marquee').marquee();
 $('.someLink').click(function(){
-  $mq.trigger('resume');
+  $mq.marquee('resume');
 });
+```
+
+###How to use events:
+
+```javascript
+$('.marquee')
+    .bind('beforeStarting', function () {
+        //code you want to execute before starting the animations
+    })
+    .bind('finished', function () {
+        //code you want to execute before after each animation loop
+    })
+    //Apply plugin
+    .marquee({
+        duration: 2000
+    });
 ```
 
 ---
@@ -115,11 +139,23 @@ $('.someLink').click(function(){
 Old updates:
 -----------
 
+**Update (20 Dec 2013):**
+Now the plugin will detect if browser supports CSS3 animations than it will animate the element using CSS3 which will perform much better than animating using jQuery.
+
+The ```pauseOnHover``` also works using CSS3. The plugin just prepares the setup and required CSS3 animation CSS.
+
+Due to some reasons if you want plugin to animate always using jQuery than you need to set ```allowCss3Support``` option to ```false```. Also an extra option ```css3easing``` is added.
+
+For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
+
+
 **Update (27 Nov 2013):**
 Easing option added. Requires jQuery easing plugin.
 
+
 **Update (22 Nov 2013):**
 Now plugin supports the 'up' and 'down' directions. Please have a look at the example to see how to use.
+
 
 **Update (21 Aug 2013):**
 If you want to hide the marquee for certain devices, try using ``` visibility: hidden``` with ``` height: 0``` & ```position: absolute``` instead of ``` display: none``` because jQuery cannot calculate with width etc of hidden elements.
@@ -127,8 +163,10 @@ For more details:
  - https://github.com/aamirafridi/jQuery.Marquee/issues/9
  - http://stackoverflow.com/questions/1841124/find-the-potential-width-of-a-hidden-element
 
+
 **Update (22 Feb 2013):**
 ```pauseOnHover``` option added. Please note that you will need to include jQuery pause plugin: https://github.com/tobia/Pause before the jQuery Marquee plugin.
+
 
 **Update (20 Feb 2013):**
  - The plugin is improved to adjust the speed according to the lenth of the text automatically. For more details read: https://github.com/aamirafridi/jQuery.Marquee/issues/1
