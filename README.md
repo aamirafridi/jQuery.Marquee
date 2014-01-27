@@ -118,7 +118,7 @@ $('.someLink').click(function(){
 });
 ```
 
-Change content and re-apply the plugin
+Change content and re-apply the plugin. 
 See example at http://jsfiddle.net/aamir/jc7F3/93/
 ```javascript
 $('.marquee')
