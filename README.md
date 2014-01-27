@@ -45,7 +45,7 @@ Methods *(new)*:
 These methods can be used like this:
 
  - First initialize marquee with any options ``` var $mq = $('.marquee').marquee();```
- - Than at any time you can call following methods ```var $mq.marquee('NAME-OF-METHOD-AS-STRING');```
+ - Then at any time you can call following methods ```var $mq.marquee('NAME-OF-METHOD-AS-STRING');```
 
 Here is the list of all methods:
 
