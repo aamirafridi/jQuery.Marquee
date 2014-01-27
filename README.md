@@ -114,15 +114,24 @@ $('.marquee').marquee({
 ```javascript
 var $mq = $('.marquee').marquee();
 $('.someLink').click(function(){
-  $mq.marquee('pause');
+  $mq.marquee('pause/resume/toggle');
 });
 ```
 
+Change content and re-apply the plugin
+See example at http://jsfiddle.net/aamir/jc7F3/93/
 ```javascript
-var $mq = $('.marquee').marquee();
-$('.someLink').click(function(){
-  $mq.marquee('resume');
-});
+$('.marquee')
+	.bind('finished', function(){
+		//Change text to something else after first loop finishes
+		$(this).marquee('destroy');
+		//Load new content using Ajax and update the marquee container
+		$(this).html('Some new data loaded using ajax')
+			//Apply marquee plugin again
+			.marquee()
+	})
+	.marquee();
+
 ```
 
 ###How to use events:
