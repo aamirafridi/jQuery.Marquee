@@ -91,7 +91,7 @@
                     }
                 };
 
-                //Check for methods
+            //Check for methods
             if (typeof options === 'string') {
                 if ($.isFunction(methods[options])) {
                     //Following two IF statements to support public methods
