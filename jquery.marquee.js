@@ -1,9 +1,8 @@
 /**
- * jQuery.marquee - scrolling text horizontally
- * Date: 20/02/2013
- * @author Aamir Afridi - aamirafridi(at)gmail(dot)com | http://aamirafridi.com/jquery/jquery-marquee-plugin
+ * jQuery.marquee - scrolling text like old marquee element
+ * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
  */
-
+ 
 ;(function ($) {
     $.fn.marquee = function (options) {
         return this.each(function () {
@@ -15,6 +14,7 @@
                 animationCss,
                 verticalDir,
                 elWidth,
+                loopCount = 3,
                 playState = 'animation-play-state',
                 css3AnimationIsSupported = false,
 
@@ -75,7 +75,6 @@
                     },
 
                     toggle: function () {
-                        console.log(this)
                         methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
                     },
 
@@ -230,11 +229,52 @@
                     $this.data('css3AnimationIsSupported', true);
                 }
             }
+
+            //if duplicated option is set to true than position the wrapper
+            if (o.duplicated) {
+                if (verticalDir) {
+                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? elHeight : '-' + (elHeight*2) + 'px');
+                }
+                else {
+                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? elWidth + 'px' : '-' + (elWidth*2) + 'px');
+                }
+                loopCount = 1;
+            }
+
             //Animate recursive method
             var animate = function () {
+
+                if(o.duplicated) {
+                    //When duplicated, the first loop will be scroll longer so double the duration
+                    if(loopCount === 1) {
+                        o.duration = o.duration * 2;
+                        //Adjust the css3 animation as well
+                        if(animationCss3Str) {
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
+                        }
+                        loopCount++;
+                    }
+                    //On 2nd loop things back to normal, normal duration for the rest of animations
+                    else if(loopCount === 2) {
+                        o.duration = o.duration / 2;
+                        //Adjust the css3 animation as well
+                        if(animationCss3Str) {
+                            animationName = animationName + '007';
+                            keyframeString = $.trim(keyframeString) + '007 ';
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                        }
+                        loopCount++;
+                    }
+                }
+
                 if (verticalDir) {
                     if (o.duplicated) {
-                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
+                        
+                        //Adjust the starting point of animation only when first loops finishes
+                        if(loopCount > 2) {
+                            $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
+                        }
+
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
                         };
@@ -244,17 +284,21 @@
                             'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
                         };
                     }
-                } else {
+                }
+                else {
                     if (o.duplicated) {
-                        $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
-                        animationCss = {
-                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
-                        };
-                    } else {
+
+                        //Adjust the starting point of animation only when first loops finishes
+                        if(loopCount > 2) {
+                            $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
+                        }
+
+                        animationCss = { 'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0 };
+
+                    }
+                    else {
                         $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
-                        animationCss = {
-                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
-                        };
+                        animationCss = { 'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px' };
                     }
                 }
 
@@ -279,6 +323,12 @@
                     _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function () {
                         $this.trigger('finished');
                     });
+                    //Animation stopped
+                    _prefixedEvent($marqueeWrapper[0], "AnimationEnd", function () {
+                        animate();
+                        $this.trigger('finished');
+                    });
+
                 } else {
                     //Start animating
                     $marqueeWrapper.animate(animationCss, o.duration, o.easing, function () {
@@ -324,7 +374,7 @@
         //requires jQuery easing plugin. Default is 'linear'
         easing: 'linear',
         //pause time before the next animation turn in milliseconds
-        delayBeforeStart: 0,
+        delayBeforeStart: 1000,
         //'left', 'right', 'up' or 'down'
         direction: 'left',
         //true or false - should the marquee be duplicated to show an effect of continues flow
