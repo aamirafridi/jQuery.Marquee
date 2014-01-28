@@ -19,6 +19,11 @@ For details please check the demos at: http://aamirafridi.com/jquery/jquery-marq
 
 ----
 
+Links:
+-----
+ - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin
+ - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/85/ to help you explain any issues you might face.
+
 Options:
 --------
  - **allowCss3Support** If you wish the plugin should animate always using jQuery animate method even if browser supporst CSS3 animations. Default is ```true```
@@ -53,11 +58,6 @@ Here is the list of all methods:
  - **resume**: To resume the marquee after being paused previously.
  - **toggle**: To toggle between pause and resume methods.
  - **destroy**: To remove marquee plugin from your element. This method is useful if you are loading/changing the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided below).
-
-Demo & blog post:
------
- - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin
- - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/1/ to help you explain any issues you might face. You can try this simple version http://jsfiddle.net/aamir/jc7F3/85/
 
 Usage:
 ----
