@@ -15,7 +15,7 @@ Update (24 Jan 2014):
 
 **PLEASE report any bugs you find.**
 
-For details please check the demos at: http://jquery.aamirafridi.com/jquerymarquee/
+For details please check the demos at: http://aamirafridi.com/jquery/jquery-marquee-plugin
 
 ----
 
@@ -56,10 +56,8 @@ Here is the list of all methods:
 
 Demo & blog post:
 -----
- - **Demo:** http://jquery.aamirafridi.com/jquerymarquee/
- - **Blog post:** http://aamirafridi.com/jquery/jquery-marquee-plugin
+ - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin
  - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/1/ to help you explain any issues you might face. You can try this simple version http://jsfiddle.net/aamir/jc7F3/85/
- - **Example of events usage:** http://jsfiddle.net/aamir/jc7F3/86/
 
 Usage:
 ----
@@ -119,7 +117,7 @@ $('.someLink').click(function(){
 ```
 
 Change content and re-apply the plugin. 
-See example at http://jsfiddle.net/aamir/jc7F3/93/
+Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin
 ```javascript
 $('.marquee')
 	.bind('finished', function(){
@@ -136,7 +134,7 @@ $('.marquee')
 
 ###How to use events:
 
-Check this example: http://jsfiddle.net/aamir/jc7F3/86/
+Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin
 
 ```javascript
 $('.marquee')
