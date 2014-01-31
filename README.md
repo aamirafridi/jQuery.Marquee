@@ -134,7 +134,7 @@ $('.marquee')
 
 ###How to use events:
 
-Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin
+Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 
 ```javascript
 $('.marquee')
@@ -162,7 +162,7 @@ The ```pauseOnHover``` also works using CSS3. The plugin just prepares the setup
 
 Due to some reasons if you want plugin to animate always using jQuery than you need to set ```allowCss3Support``` option to ```false```. Also an extra option ```css3easing``` is added.
 
-For details please check the demos  http://jquery.aamirafridi.com/jquerymarquee/
+Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 
 
 **Update (27 Nov 2013):**
