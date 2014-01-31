@@ -57,7 +57,7 @@ Here is the list of all methods:
  - **pause**: To pause the marquee at any time.
  - **resume**: To resume the marquee after being paused previously.
  - **toggle**: To toggle between pause and resume methods.
- - **destroy**: To remove marquee plugin from your element. This method is useful if you are loading/changing the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided below).
+ - **destroy**: To remove marquee plugin from your element. This method is useful if you are loading/changing the data using Ajax or just another string. You can combine this with ```finished``` event so you can let marquee to show some data and soon it finishes showing, you can destroy it, change the html and than apply the plugin again. See the demo page for details (links provided above).
 
 Usage:
 ----
