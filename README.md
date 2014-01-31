@@ -117,7 +117,7 @@ $('.someLink').click(function(){
 ```
 
 Change content and re-apply the plugin. 
-Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin
+Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 ```javascript
 $('.marquee')
 	.bind('finished', function(){
