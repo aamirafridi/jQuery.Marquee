@@ -145,7 +145,7 @@
             });
 
             if (o.duplicated) {
-                $el.clone().appendTo($this);
+                $el.clone(true).appendTo($this);
             }
 
             //wrap both inner elements into one div
