@@ -22,7 +22,7 @@ For details please check the demos at: http://aamirafridi.com/jquery/jquery-marq
 Links:
 -----
  - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
- - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/85/ to help you explain any issues you might face.
+ - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/105/ to help you explain any issues you might face.
 
 Options:
 --------
