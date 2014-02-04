@@ -44,7 +44,7 @@ Events:
  - **paused:** Event will be fired on the element when the animation is paused.
  - **resumed:** Event will be fired on the element when the animation is resumed.
 
-Methods *(new)*:
+Methods:
 ---------------
 
 These methods can be used like this:
