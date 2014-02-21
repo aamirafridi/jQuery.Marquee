@@ -225,7 +225,7 @@
                 }
 
                 if (css3AnimationIsSupported) {
-                    animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's infinite ' + o.css3easing;
+                    animationCss3Str = animationName + ' ' + o.duration + 'ms ' + o.delayBeforeStart + 'ms infinite ' + o.css3easing;
                     $this.data('css3AnimationIsSupported', true);
                 }
             }
@@ -250,7 +250,7 @@
                         o.duration = o.duration * 2;
                         //Adjust the css3 animation as well
                         if(animationCss3Str) {
-                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
+                            animationCss3Str = animationName + ' ' + o.duration + 'ms ' + o.delayBeforeStart + 'ms ' + o.css3easing;
                         }
                         loopCount++;
                     }
@@ -261,7 +261,7 @@
                         if(animationCss3Str) {
                             animationName = animationName + '007';
                             keyframeString = $.trim(keyframeString) + '007 ';
-                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                            animationCss3Str = animationName + ' ' + o.duration + 'ms 0s infinite ' + o.css3easing;
                         }
                         loopCount++;
                     }
