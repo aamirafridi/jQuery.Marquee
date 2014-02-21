@@ -1,11 +1,13 @@
+
 /**
  * jQuery.marquee - scrolling text like old marquee element
  * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
  */
- 
-;(function ($) {
-    $.fn.marquee = function (options) {
-        return this.each(function () {
+
+;
+(function($) {
+    $.fn.marquee = function(options) {
+        return this.each(function() {
             // Extend the options if any provided
             var o = $.extend({}, $.fn.marquee.defaults, options),
                 $this = $(this),
@@ -19,14 +21,14 @@
                 css3AnimationIsSupported = false,
 
                 //Private methods
-                _prefixedEvent = function (element, type, callback) {
+                _prefixedEvent = function(element, type, callback) {
                     var pfx = ["webkit", "moz", "MS", "o", ""];
                     for (var p = 0; p < pfx.length; p++) {
                         if (!pfx[p]) type = type.toLowerCase();
                         element.addEventListener(pfx[p] + type, callback, false);
                     }
                 },
-                _objToString = function (obj) {
+                _objToString = function(obj) {
                     var tabjson = [];
                     for (var p in obj) {
                         if (obj.hasOwnProperty(p)) {
@@ -37,13 +39,13 @@
                     return '{' + tabjson.join(',') + '}';
                 },
 
-                _startAnimationWithDelay = function () {
+                _startAnimationWithDelay = function() {
                     $this.timer = setTimeout(animate, o.delayBeforeStart);
                 },
 
                 //Public methods
                 methods = {
-                    pause: function () {
+                    pause: function() {
                         if (css3AnimationIsSupported && o.allowCss3Support) {
                             $marqueeWrapper.css(playState, 'paused');
                         } else {
@@ -58,7 +60,7 @@
                         $this.trigger('paused');
                     },
 
-                    resume: function () {
+                    resume: function() {
                         //resume using css3
                         if (css3AnimationIsSupported && o.allowCss3Support) {
                             $marqueeWrapper.css(playState, 'running');
@@ -74,17 +76,17 @@
                         $this.trigger('resumed');
                     },
 
-                    toggle: function () {
+                    toggle: function() {
                         methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
                     },
 
-                    destroy: function () {
+                    destroy: function() {
                         //Clear timer
                         clearTimeout($this.timer);
                         //Just unwrap the elements that has been added using this plugin
                         $this.css('visibility', 'hidden').html($this.find('.js-marquee:first'));
                         //This is to prevent the sudden blink
-                        setTimeout(function () {
+                        setTimeout(function() {
                             $this.css('visibility', 'visible');
                         }, 0);
                     }
@@ -109,7 +111,7 @@
                For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
                jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
             var dataAttributes = {}, attr;
-            $.each(o, function (key, value) {
+            $.each(o, function(key, value) {
                 //Check if element has this data attribute
                 attr = $this.attr('data-' + key);
                 if (typeof attr !== 'undefined') {
@@ -163,8 +165,8 @@
                 //Change the CSS for js-marquee element
                 $this.find('.js-marquee').css({
                     'float': 'none',
-                        'margin-bottom': o.gap,
-                        'margin-right': 0
+                    'margin-bottom': o.gap,
+                    'margin-right': 0
                 });
 
                 //Remove bottom margin from 2nd element if duplicated
@@ -225,7 +227,7 @@
                 }
 
                 if (css3AnimationIsSupported) {
-                    animationCss3Str = animationName + ' ' + o.duration + 'ms ' + o.delayBeforeStart + 'ms infinite ' + o.css3easing;
+                    animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's infinite ' + o.css3easing;
                     $this.data('css3AnimationIsSupported', true);
                 }
             }
@@ -233,35 +235,34 @@
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
                 if (verticalDir) {
-                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? elHeight : '-' + (elHeight*2) + 'px');
-                }
-                else {
-                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? elWidth + 'px' : '-' + (elWidth*2) + 'px');
+                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? elHeight : '-' + (elHeight * 2) + 'px');
+                } else {
+                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? elWidth + 'px' : '-' + (elWidth * 2) + 'px');
                 }
                 loopCount = 1;
             }
 
             //Animate recursive method
-            var animate = function () {
+            var animate = function() {
 
-                if(o.duplicated) {
+                if (o.duplicated) {
                     //When duplicated, the first loop will be scroll longer so double the duration
-                    if(loopCount === 1) {
+                    if (loopCount === 1) {
                         o.duration = o.duration * 2;
                         //Adjust the css3 animation as well
-                        if(animationCss3Str) {
-                            animationCss3Str = animationName + ' ' + o.duration + 'ms ' + o.delayBeforeStart + 'ms ' + o.css3easing;
+                        if (animationCss3Str) {
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
                         }
                         loopCount++;
                     }
                     //On 2nd loop things back to normal, normal duration for the rest of animations
-                    else if(loopCount === 2) {
+                    else if (loopCount === 2) {
                         o.duration = o.duration / 2;
                         //Adjust the css3 animation as well
-                        if(animationCss3Str) {
+                        if (animationCss3Str) {
                             animationName = animationName + '007';
                             keyframeString = $.trim(keyframeString) + '007 ';
-                            animationCss3Str = animationName + ' ' + o.duration + 'ms 0s infinite ' + o.css3easing;
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
                         }
                         loopCount++;
                     }
@@ -269,9 +270,9 @@
 
                 if (verticalDir) {
                     if (o.duplicated) {
-                        
+
                         //Adjust the starting point of animation only when first loops finishes
-                        if(loopCount > 2) {
+                        if (loopCount > 2) {
                             $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
                         }
 
@@ -284,21 +285,23 @@
                             'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
                         };
                     }
-                }
-                else {
+                } else {
                     if (o.duplicated) {
 
                         //Adjust the starting point of animation only when first loops finishes
-                        if(loopCount > 2) {
+                        if (loopCount > 2) {
                             $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
                         }
 
-                        animationCss = { 'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0 };
+                        animationCss = {
+                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
+                        };
 
-                    }
-                    else {
+                    } else {
                         $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
-                        animationCss = { 'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px' };
+                        animationCss = {
+                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
+                        };
                     }
                 }
 
@@ -320,18 +323,18 @@
                     }
 
                     //Animation iteration event
-                    _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function () {
+                    _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function() {
                         $this.trigger('finished');
                     });
                     //Animation stopped
-                    _prefixedEvent($marqueeWrapper[0], "AnimationEnd", function () {
+                    _prefixedEvent($marqueeWrapper[0], "AnimationEnd", function() {
                         animate();
                         $this.trigger('finished');
                     });
 
                 } else {
                     //Start animating
-                    $marqueeWrapper.animate(animationCss, o.duration, o.easing, function () {
+                    $marqueeWrapper.animate(animationCss, o.duration, o.easing, function() {
                         //fire event
                         $this.trigger('finished');
                         //animate again
