@@ -232,13 +232,12 @@
                 }
             }
 			
-			_rePositionVertically = function() {
-				$marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
-			}
-			
-			_rePositionHorizontally = function() {
-				$marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
-			}
+			var	_rePositionVertically = function() {
+					$marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
+				},
+				_rePositionHorizontally = function() {
+					$marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+				}
 			
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
