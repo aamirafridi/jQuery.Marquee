@@ -231,20 +231,34 @@
                     $this.data('css3AnimationIsSupported', true);
                 }
             }
-
+			
+			_rePositionVertically = function() {
+				$marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
+			}
+			
+			_rePositionHorizontally = function() {
+				$marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+			}
+			
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
                 if (verticalDir) {
-                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? elHeight : '-' + ((elHeight * 2)  - o.gap) + 'px');
+                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight : '-' + ((elHeight * 2)  - o.gap) + 'px');
                 } else {
                     $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
                 }
                 loopCount = 1;
             }
+			else {
+				if (verticalDir) {
+                    _rePositionVertically();
+                } else {
+                    _rePositionHorizontally();
+                }
+			}
 
             //Animate recursive method
             var animate = function() {
-
                 if (o.duplicated) {
                     //When duplicated, the first loop will be scroll longer so double the duration
                     if (loopCount === 1) {
@@ -280,7 +294,7 @@
                             'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
                         };
                     } else {
-                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
+                        _rePositionVertically();
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
                         };
@@ -298,7 +312,7 @@
                         };
 
                     } else {
-                        $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+                        _rePositionHorizontally();
                         animationCss = {
                             'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
                         };
