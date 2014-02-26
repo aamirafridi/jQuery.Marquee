@@ -17,7 +17,7 @@
                 loopCount = 3,
                 playState = 'animation-play-state',
                 css3AnimationIsSupported = false,
-
+                
                 //Private methods
                 _prefixedEvent = function(element, type, callback) {
                     var pfx = ["webkit", "moz", "MS", "o", ""];
@@ -26,6 +26,7 @@
                         element.addEventListener(pfx[p] + type, callback, false);
                     }
                 },
+                
                 _objToString = function(obj) {
                     var tabjson = [];
                     for (var p in obj) {
@@ -36,11 +37,11 @@
                     tabjson.push();
                     return '{' + tabjson.join(',') + '}';
                 },
-
+                
                 _startAnimationWithDelay = function() {
                     $this.timer = setTimeout(animate, o.delayBeforeStart);
                 },
-
+                
                 //Public methods
                 methods = {
                     pause: function() {
