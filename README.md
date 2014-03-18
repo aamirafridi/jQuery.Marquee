@@ -10,6 +10,13 @@ A **4.37kb** (minified) jQuery plugin to scroll the text like the old traditiona
 ```
 Read more about rawgithub here: https://rawgithub.com
 
+Also if you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
+
+```javascript
+$(window).load(function() {
+    $('.marquee').marquee();
+});
+```
 ----
 
 Links:
