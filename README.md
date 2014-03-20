@@ -13,6 +13,7 @@ Read more about rawgithub here: https://rawgithub.com
 Also if you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
 
 ```javascript
+//if you have images in marquee
 $(window).load(function() {
     $('.marquee').marquee();
 });
