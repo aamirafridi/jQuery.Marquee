@@ -79,7 +79,6 @@
                         clearTimeout($this.timer);
                         //Unbind all events
                         $this.find("*").andSelf().unbind();
-                      
                         //Just unwrap the elements that has been added using this plugin
                         $this.html($this.find('.js-marquee:first').html());
                     }
