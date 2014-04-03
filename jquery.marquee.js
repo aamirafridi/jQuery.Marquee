@@ -1,20 +1,20 @@
 /**
  * jQuery.marquee - scrolling text like old marquee element
  * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
- */
-;
-(function ($) {
-    $.fn.marquee = function (options) {
-        return this.each(function () {
+ */;
+(function($) {
+    $.fn.marquee = function(options) {
+        return this.each(function() {
             // Extend the options if any provided
             var o = $.extend({}, $.fn.marquee.defaults, options),
                 $this = $(this),
-                $marqueeWrapper, containerWidth, animationCss, verticalDir, elWidth, loopCount = 3,
+                $marqueeWrapper, containerWidth, animationCss, verticalDir, elWidth,
+                loopCount = 3,
                 playState = 'animation-play-state',
                 css3AnimationIsSupported = false,
 
                 //Private methods
-                _prefixedEvent = function (element, type, callback) {
+                _prefixedEvent = function(element, type, callback) {
                     var pfx = ["webkit", "moz", "MS", "o", ""];
                     for (var p = 0; p < pfx.length; p++) {
                         if (!pfx[p]) type = type.toLowerCase();
@@ -22,7 +22,7 @@
                     }
                 },
 
-                _objToString = function (obj) {
+                _objToString = function(obj) {
                     var tabjson = [];
                     for (var p in obj) {
                         if (obj.hasOwnProperty(p)) {
@@ -33,13 +33,13 @@
                     return '{' + tabjson.join(',') + '}';
                 },
 
-                _startAnimationWithDelay = function () {
+                _startAnimationWithDelay = function() {
                     $this.timer = setTimeout(animate, o.delayBeforeStart);
                 },
 
                 //Public methods
                 methods = {
-                    pause: function () {
+                    pause: function() {
                         if (css3AnimationIsSupported && o.allowCss3Support) {
                             $marqueeWrapper.css(playState, 'paused');
                         } else {
@@ -54,7 +54,7 @@
                         $this.trigger('paused');
                     },
 
-                    resume: function () {
+                    resume: function() {
                         //resume using css3
                         if (css3AnimationIsSupported && o.allowCss3Support) {
                             $marqueeWrapper.css(playState, 'running');
@@ -70,19 +70,18 @@
                         $this.trigger('resumed');
                     },
 
-                    toggle: function () {
+                    toggle: function() {
                         methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
                     },
 
-                    destroy: function () {
+                    destroy: function() {
                         //Clear timer
                         clearTimeout($this.timer);
+                        //Unbind all events
+                        $this.find("*").andSelf().unbind();
+                      
                         //Just unwrap the elements that has been added using this plugin
-                        $this.css('visibility', 'hidden').html($this.find('.js-marquee:first'));
-                        //This is to prevent the sudden blink
-                        setTimeout(function () {
-                            $this.css('visibility', 'visible');
-                        }, 0);
+                        $this.html($this.find('.js-marquee:first').html());
                     }
                 };
 
@@ -101,23 +100,23 @@
                 return;
             }
 
-/* Check if element has data attributes. They have top priority
+            /* Check if element has data attributes. They have top priority
                For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
                jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
             var dataAttributes = {},
-                attr;
-            $.each(o, function (key, value) {
+            attr;
+            $.each(o, function(key, value) {
                 //Check if element has this data attribute
                 attr = $this.attr('data-' + key);
                 if (typeof attr !== 'undefined') {
                     //Now check if value is boolean or not
                     switch (attr) {
-                    case 'true':
-                        attr = true;
-                        break;
-                    case 'false':
-                        attr = false;
-                        break;
+                        case 'true':
+                            attr = true;
+                            break;
+                        case 'false':
+                            attr = false;
+                            break;
                     }
                     o[key] = attr;
                 }
@@ -226,12 +225,12 @@
                 }
             }
 
-            var _rePositionVertically = function () {
-                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
-                },
-                _rePositionHorizontally = function () {
-                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
-                };
+            var _rePositionVertically = function() {
+                $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
+            },
+            _rePositionHorizontally = function() {
+                $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+            };
 
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
@@ -250,116 +249,116 @@
             }
 
             //Animate recursive method
-            var animate = function () {
+            var animate = function() {
+                if (o.duplicated) {
+                    //When duplicated, the first loop will be scroll longer so double the duration
+                    if (loopCount === 1) {
+                        o._originalDuration = o.duration;
+                        if (verticalDir) {
+                            o.duration = o.direction == 'up' ? o.duration + (containerHeight / ((elHeight) / o.duration)) : o.duration * 2;
+                        } else {
+                            o.duration = o.direction == 'left' ? o.duration + (containerWidth / ((elWidth) / o.duration)) : o.duration * 2;
+                        }
+                        //Adjust the css3 animation as well
+                        if (animationCss3Str) {
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
+                        }
+                        loopCount++;
+                    }
+                    //On 2nd loop things back to normal, normal duration for the rest of animations
+                    else if (loopCount === 2) {
+                        o.duration = o._originalDuration;
+                        //Adjust the css3 animation as well
+                        if (animationCss3Str) {
+                            animationName = animationName + '0';
+                            keyframeString = $.trim(keyframeString) + '0 ';
+                            animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                        }
+                        loopCount++;
+                    }
+                }
+
+                if (verticalDir) {
                     if (o.duplicated) {
-                        //When duplicated, the first loop will be scroll longer so double the duration
-                        if (loopCount === 1) {
-                            o._originalDuration = o.duration;
-                            if (verticalDir) {
-                                o.duration = o.direction == 'up' ? o.duration + (containerHeight / ((elHeight) / o.duration)) : o.duration * 2;
-                            } else {
-                                o.duration = o.direction == 'left' ? o.duration + (containerWidth / ((elWidth) / o.duration)) : o.duration * 2;
-                            }
-                            //Adjust the css3 animation as well
-                            if (animationCss3Str) {
-                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
-                            }
-                            loopCount++;
-                        }
-                        //On 2nd loop things back to normal, normal duration for the rest of animations
-                        else if (loopCount === 2) {
-                            o.duration = o._originalDuration;
-                            //Adjust the css3 animation as well
-                            if (animationCss3Str) {
-                                animationName = animationName + '0';
-                                keyframeString = $.trim(keyframeString) + '0 ';
-                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
-                            }
-                            loopCount++;
-                        }
-                    }
 
-                    if (verticalDir) {
-                        if (o.duplicated) {
-
-                            //Adjust the starting point of animation only when first loops finishes
-                            if (loopCount > 2) {
-                                $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
-                            }
-
-                            animationCss = {
-                                'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
-                            };
-                        } else {
-                            _rePositionVertically();
-                            animationCss = {
-                                'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
-                            };
+                        //Adjust the starting point of animation only when first loops finishes
+                        if (loopCount > 2) {
+                            $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
                         }
+
+                        animationCss = {
+                            'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
+                        };
                     } else {
-                        if (o.duplicated) {
+                        _rePositionVertically();
+                        animationCss = {
+                            'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
+                        };
+                    }
+                } else {
+                    if (o.duplicated) {
 
-                            //Adjust the starting point of animation only when first loops finishes
-                            if (loopCount > 2) {
-                                $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
-                            }
-
-                            animationCss = {
-                                'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
-                            };
-
-                        } else {
-                            _rePositionHorizontally();
-                            animationCss = {
-                                'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
-                            };
+                        //Adjust the starting point of animation only when first loops finishes
+                        if (loopCount > 2) {
+                            $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
                         }
+
+                        animationCss = {
+                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
+                        };
+
+                    } else {
+                        _rePositionHorizontally();
+                        animationCss = {
+                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
+                        };
+                    }
+                }
+
+                //fire event
+                $this.trigger('beforeStarting');
+
+                //If css3 support is available than do it with css3, otherwise use jQuery as fallback
+                if (css3AnimationIsSupported) {
+                    //Add css3 animation to the element
+                    $marqueeWrapper.css(animationString, animationCss3Str);
+                    var keyframeCss = keyframeString + ' { 100%  ' + _objToString(animationCss) + '}',
+                        $styles = $('style');
+
+                    //Now add the keyframe animation to the head
+                    if ($styles.length !== 0) {
+                        //Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
+                        $styles.filter(":last").append(keyframeCss);
+                    } else {
+                        $('head').append('<style>' + keyframeCss + '</style>');
                     }
 
-                    //fire event
-                    $this.trigger('beforeStarting');
+                    //Animation iteration event
+                    _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function() {
+                        $this.trigger('finished');
+                    });
+                    //Animation stopped
+                    _prefixedEvent($marqueeWrapper[0], "AnimationEnd", function() {
+                        animate();
+                        $this.trigger('finished');
+                    });
 
-                    //If css3 support is available than do it with css3, otherwise use jQuery as fallback
-                    if (css3AnimationIsSupported) {
-                        //Add css3 animation to the element
-                        $marqueeWrapper.css(animationString, animationCss3Str);
-                        var keyframeCss = keyframeString + ' { 100%  ' + _objToString(animationCss) + '}',
-                            $styles = $('style');
-
-                        //Now add the keyframe animation to the head
-                        if ($styles.length !== 0) {
-                            //Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
-                            $styles.filter(":last").append(keyframeCss);
+                } else {
+                    //Start animating
+                    $marqueeWrapper.animate(animationCss, o.duration, o.easing, function() {
+                        //fire event
+                        $this.trigger('finished');
+                        //animate again
+                        if (o.pauseOnCycle) {
+                            _startAnimationWithDelay();
                         } else {
-                            $('head').append('<style>' + keyframeCss + '</style>');
-                        }
-
-                        //Animation iteration event
-                        _prefixedEvent($marqueeWrapper[0], "AnimationIteration", function () {
-                            $this.trigger('finished');
-                        });
-                        //Animation stopped
-                        _prefixedEvent($marqueeWrapper[0], "AnimationEnd", function () {
                             animate();
-                            $this.trigger('finished');
-                        });
-
-                    } else {
-                        //Start animating
-                        $marqueeWrapper.animate(animationCss, o.duration, o.easing, function () {
-                            //fire event
-                            $this.trigger('finished');
-                            //animate again
-                            if (o.pauseOnCycle) {
-                                _startAnimationWithDelay();
-                            } else {
-                                animate();
-                            }
-                        });
-                    }
-                    //save the status
-                    $this.data('runningStatus', 'resumed');
-                };
+                        }
+                    });
+                }
+                //save the status
+                $this.data('runningStatus', 'resumed');
+            };
 
             //bind pause and resume events
             $this.bind('pause', methods.pause);
