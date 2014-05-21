@@ -4,11 +4,10 @@ jQuery-Marquee with CSS3 Support
 A **4.8kb** (minified) jQuery plugin to scroll the text like the old traditional marquee.
 
 ----
-**Quick note:** Please use the latest version of this plugin so you get the fixes automatically. For this simply include the plugin this way:
+**Quick note:** I have added the plugin to [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee) so you can use it as following
 ```html
-<script src="https://rawgithub.com/aamirafridi/jQuery.Marquee/master/jquery.marquee.min.js?clear=cache" type="text/javascript"></script>
+<script src="//cdn.jsdelivr.net/jquery.marquee/1.3.1/jquery.marquee.min.js" type="text/javascript"></script>
 ```
-Read more about rawgithub here: https://rawgithub.com
 
 Also if you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
 
