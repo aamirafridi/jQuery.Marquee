@@ -234,7 +234,7 @@
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
                 if (verticalDir) {
-                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight : '-' + ((elHeight * 2) - o.gap) + 'px');
+                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px');
                 } else {
                     $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
                 }
