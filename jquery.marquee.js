@@ -228,7 +228,17 @@
                 $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
             },
             _rePositionHorizontally = function() {
-                $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+                if(o.setStartPosition){
+                    if(o.direction == 'right'){
+                        var setStartPosition = containerWidth / 100;
+                        setStartPosition = Math.round(setStartPosition * o.setStartPosition);
+                        setStartPosition = ((elWidth - (elWidth * 2)) + setStartPosition);
+                    }
+                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? 100 - o.setStartPosition + '%' :  setStartPosition + 'px');                
+                }
+                else{
+                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+                }
             };
 
             //if duplicated option is set to true than position the wrapper
@@ -236,7 +246,12 @@
                 if (verticalDir) {
                     $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px');
                 } else {
-                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
+                    if(o.direction == 'right'){
+                        var setStartPosition = containerWidth / 100;
+                        setStartPosition = Math.round(setStartPosition * o.setStartPosition);
+                        setStartPosition = ((elWidth - (elWidth * 2))*2 + o.gap + setStartPosition);
+                    } 
+                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? 100 - o.setStartPosition + '%' :  setStartPosition + 'px');
                 }
                 loopCount = 1;
             } else {
@@ -398,6 +413,8 @@
         //on cycle pause the marquee
         pauseOnCycle: false,
         //on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
-        pauseOnHover: false
+        pauseOnHover: false,
+        //Set start position of element in percentage value as integer (for example 5 is 5% offset)
+        setStartPosition: false
     };
 })(jQuery);
