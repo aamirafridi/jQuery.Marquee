@@ -170,8 +170,17 @@
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
                 // adjust the animation speed according to the text length
-                // formula is to: (Height of the text node / Height of the main container) * speed;
-                o.duration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
+                if (o.startVisible && !o.duplicated) {
+                    // Compute the complete animation duration and save it for later reference
+                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * speed;
+                    o._completeDuration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
+
+                    // formula is to: (Height of the text node / height of the main container) * speed
+                    o.duration = (parseInt(elHeight, 10) / parseInt(containerHeight, 10)) * o.duration;
+                } else {
+                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * speed;
+                    o.duration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
+                }
 
             } else {
                 //Save the width of the each element so we can use it in animation
@@ -181,11 +190,20 @@
                 containerWidth = $this.width();
 
                 // adjust the animation speed according to the text length
-                // formula is to: (Width of the text node / Width of the main container) * speed;
-                o.duration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
+                if (o.startVisible && !o.duplicated) {
+                    // Compute the complete animation duration and save it for later reference
+                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * speed;
+                    o._completeDuration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
+
+                    // (Width of the text node / width of the main container) * speed
+                    o.duration = (parseInt(elWidth, 10) / parseInt(containerWidth, 10)) * o.duration;
+                } else {
+                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * speed;
+                    o.duration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
+                }
             }
 
-            //if duplicated than reduce the speed
+            //if duplicated then reduce the speed
             if (o.duplicated) {
                 o.duration = o.duration / 2;
             }
@@ -234,11 +252,26 @@
             //if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
                 if (verticalDir) {
-                    $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px');
+                    if (o.startVisible) {
+                        $marqueeWrapper.css('margin-top', 0);
+                    } else {
+                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px');
+                    }
                 } else {
-                    $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
+                    if (o.startVisible) {
+                        $marqueeWrapper.css('margin-left', 0);
+                    } else {
+                        $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
+                    }
                 }
-                loopCount = 1;
+
+                // If the text starts out visible we can skip the two initial loops
+                if (!o.startVisible) {
+                  loopCount = 1;
+                }
+            } else if (o.startVisible) {
+                // We only have two different loops if marquee is duplicated and starts visible 
+                loopCount = 2;
             } else {
                 if (verticalDir) {
                     _rePositionVertically();
@@ -288,6 +321,28 @@
                         animationCss = {
                             'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
                         };
+                    } else if (o.startVisible) {
+                        // This loop moves the marquee out of the container
+                        if (loopCount === 2) {
+                            //Adjust the css3 animation as well
+                            if (animationCss3Str) {
+                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
+                            }
+                            animationCss = {
+                                'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : containerHeight + 'px'
+                            };
+                            loopCount++;
+                        } else if (loopCount === 3) {
+                            // Set the duration for the animation that will run forever
+                            o.duration = o._completeDuration;
+                            //Adjust the css3 animation as well
+                            if (animationCss3Str) {
+                                    animationName = animationName + '0';
+                                    keyframeString = $.trim(keyframeString) + '0 ';
+                                    animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                            }
+                            _rePositionVertically();
+                        }
                     } else {
                         _rePositionVertically();
                         animationCss = {
@@ -306,6 +361,28 @@
                             'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
                         };
 
+                    } else if (o.startVisible) {
+                        // This loop moves the marquee out of the container
+                        if (loopCount === 2) {
+                            //Adjust the css3 animation as well
+                            if (animationCss3Str) {
+                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
+                            }
+                            animationCss = {
+                                'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
+                            };
+                            loopCount++;
+                        } else if (loopCount === 3) {
+                            // Set the duration for the animation that will run forever
+                            o.duration = o._completeDuration;
+                            //Adjust the css3 animation as well
+                            if (animationCss3Str) {
+                                animationName = animationName + '0';
+                                keyframeString = $.trim(keyframeString) + '0 ';
+                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                            }
+                            _rePositionHorizontally();
+                        }
                     } else {
                         _rePositionHorizontally();
                         animationCss = {
@@ -398,6 +475,8 @@
         //on cycle pause the marquee
         pauseOnCycle: false,
         //on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
-        pauseOnHover: false
+        pauseOnHover: false,
+        //the marquee is visible initially positioned next to the border towards it will be moving
+        startVisible: false
     };
 })(jQuery);
