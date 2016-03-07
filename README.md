@@ -1,4 +1,4 @@
-jQuery-Marquee with CSS3 Support
+jQuery-Marquee with CSS3 Supp😎rt
 ==============
 
 A **4.7kb** (minified) jQuery plugin to scroll the text like the old traditional marquee.
@@ -36,6 +36,7 @@ Options:
  - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default is ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
  - **pauseOnHover** On hover pause the marquee. If browser supports CSS3 and ```allowCss3Support``` is set to ```true``` than it will be done using CSS3. Otherwise this will be done using jQuery plugin https://github.com/tobia/Pause. Default is ```false```. Check the demo page for a demo.
  - **pauseOnCycle** On cycle, pause the marquee for ```delayBeforeStart``` milliseconds.
+ - **startVisible** The marquee will be visible in the start if set to `true`. Thanks to @nuke-ellington 👍
 
 Events:
 ------
