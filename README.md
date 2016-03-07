@@ -71,7 +71,7 @@ Usage:
 or use this if you want to start the plugin with no options but want to use data attributes. You can use all the options listed above as data attributes. This is how you can use them:
 
 ```html
-<div class='marquee' data-duration='5000' data-gap='10' data-dupilcated='true' >
+<div class='marquee' data-duration='5000' data-gap='10' data-duplicated='true' >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit END.
 </div>
 ```
