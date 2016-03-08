@@ -162,6 +162,9 @@ $(window).load(function() {
 Updates:
 -----------
 
+**Update (8 Mar 2016):**
+Now plugin have new option: **startVisible** The marquee will be visible in the start if set to `true`. Thanks to @nuke-ellington 👍
+
 **Update (24 Jan 2014):**
 
 **Note: people who been asking me how to use this plugin with content being loaded with Ajax, please read notes about this update.**
