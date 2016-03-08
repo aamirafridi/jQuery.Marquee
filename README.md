@@ -11,7 +11,7 @@ A **4.7kb** (minified) jQuery plugin to scroll the text like the old traditional
 
 Install using **bower**:
 -----
-`bower install jquery.marquee`
+`bower install jQuery.Marquee`
 
 Also if you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
 
