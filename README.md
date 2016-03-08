@@ -14,16 +14,6 @@ Install:
 
 **Download:** [zip](https://github.com/aamirafridi/jQuery.Marquee/archive/master.zip)
 
-Also if you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
-
-```javascript
-//if you have images in marquee
-$(window).load(function() {
-    $('.marquee').marquee();
-});
-```
-----
-
 Links:
 -----
  - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
@@ -157,6 +147,19 @@ $('.marquee')
 ```
 
 ---
+
+Images:
+------
+If you are using images in marquee, sometimes the plugin cannot calculate accurate widths while images are still loading. You can try this instead of ```$(document).ready(function(){...})```
+
+```javascript
+//if you have images in marquee
+$(window).load(function() {
+    $('.marquee').marquee();
+});
+```
+----
+
 
 Updates:
 -----------
