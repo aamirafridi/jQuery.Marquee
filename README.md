@@ -5,7 +5,7 @@ A **5.53 KB** (minified) jQuery plugin to scroll the text like the old tradition
 
 Install:
 ----
- - **NPM: ** `npm install jquery.marquee --save`
+ - **NPM:** `npm install jquery.marquee --save`
  - **CDN:** [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee)
 ```html
 <script src="//cdn.jsdelivr.net/jquery.marquee/1.3.3/jquery.marquee.min.js" type="text/javascript"></script>
