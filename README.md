@@ -1,10 +1,11 @@
 jQuery-Marquee with CSS3 Supp😎rt
 ==============
 
-A **4.7kb** (minified) jQuery plugin to scroll the text like the old traditional marquee.
+A **5.53 KB** (minified) jQuery plugin to scroll the text like the old traditional marquee.
 
 Install:
 ----
+ - **NPM: ** `npm install jquery.marquee --save`
  - **CDN:** [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee)
 ```html
 <script src="//cdn.jsdelivr.net/jquery.marquee/1.3.3/jquery.marquee.min.js" type="text/javascript"></script>
@@ -110,7 +111,7 @@ $('.someLink').click(function(){
 });
 ```
 
-Change content and re-apply the plugin. 
+Change content and re-apply the plugin.
 Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 ```javascript
 $('.marquee')
