@@ -399,14 +399,14 @@
                     //Add css3 animation to the element
                     $marqueeWrapper.css(animationString, animationCss3Str);
                     var keyframeCss = keyframeString + ' { 100%  ' + _objToString(animationCss) + '}',
-                        $styles = $('style');
+                         $styles = $marqueeWrapper.find('style');
 
-                    //Now add the keyframe animation to the head
+                    //Now add the keyframe animation to the marquee element
                     if ($styles.length !== 0) {
                         //Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
-                        $styles.filter(":last").append(keyframeCss);
+                        $styles.filter(":last").html(keyframeCss);
                     } else {
-                        $('head').append('<style>' + keyframeCss + '</style>');
+                        $marqueeWrapper.append('<style>' + keyframeCss + '</style>');
                     }
 
                     //Animation iteration event
