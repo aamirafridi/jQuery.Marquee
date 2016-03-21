@@ -121,8 +121,10 @@
                 }
             });
 
-            // since speed option is changed to duration, to support speed for those who are already using it
-            o.duration = o.speed || o.duration;
+            // Reintroduce speed as an option. It calculates duration as a factor of the container width
+            if (o.speed) {
+                o.duration = o.speed * parseInt($this.width(), 10);
+            }
 
             // Shortcut to see if direction is upward or downward
             verticalDir = o.direction == 'up' || o.direction == 'down';
@@ -169,16 +171,16 @@
 
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
-                // adjust the animation speed according to the text length
+                // adjust the animation duration according to the text length
                 if (o.startVisible && !o.duplicated) {
                     // Compute the complete animation duration and save it for later reference
-                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * speed;
+                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * duration;
                     o._completeDuration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
 
-                    // formula is to: (Height of the text node / height of the main container) * speed
+                    // formula is to: (Height of the text node / height of the main container) * duration
                     o.duration = (parseInt(elHeight, 10) / parseInt(containerHeight, 10)) * o.duration;
                 } else {
-                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * speed;
+                    // formula is to: (Height of the text node + height of the main container / Height of the main container) * duration;
                     o.duration = ((parseInt(elHeight, 10) + parseInt(containerHeight, 10)) / parseInt(containerHeight, 10)) * o.duration;
                 }
 
@@ -189,21 +191,21 @@
                 // container width
                 containerWidth = $this.width();
 
-                // adjust the animation speed according to the text length
+                // adjust the animation duration according to the text length
                 if (o.startVisible && !o.duplicated) {
                     // Compute the complete animation duration and save it for later reference
-                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * speed;
+                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * duration;
                     o._completeDuration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
 
-                    // (Width of the text node / width of the main container) * speed
+                    // (Width of the text node / width of the main container) * duration
                     o.duration = (parseInt(elWidth, 10) / parseInt(containerWidth, 10)) * o.duration;
                 } else {
-                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * speed;
+                    // formula is to: (Width of the text node + width of the main container / Width of the main container) * duration;
                     o.duration = ((parseInt(elWidth, 10) + parseInt(containerWidth, 10)) / parseInt(containerWidth, 10)) * o.duration;
                 }
             }
 
-            // if duplicated then reduce the speed
+            // if duplicated then reduce the duration
             if (o.duplicated) {
                 o.duration = o.duration / 2;
             }
@@ -468,7 +470,7 @@
         direction: 'left',
         // true or false - should the marquee be duplicated to show an effect of continues flow
         duplicated: false,
-        // speed in milliseconds of the marquee in milliseconds
+        // duration in milliseconds of the marquee in milliseconds
         duration: 5000,
         // gap in pixels between the tickers
         gap: 20,

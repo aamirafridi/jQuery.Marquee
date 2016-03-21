@@ -26,7 +26,8 @@ Options:
  - **delayBeforeStart** Time in milliseconds before the marquee starts animating. Default is ```1000```
  - **direction** Direction towards which the marquee will animate ```'left' / 'right' / 'up' / 'down'```. Default is ```'left'```. Todo: need to change this to ```ltr/rtl``` etc
  - **duplicated** Should the marquee be duplicated to show an effect of continuous flow. Use this only when the text is shorter than the container. Default is ```false```
- - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```. This option is the old ```speed``` option which still works but duration is the more correct word.
+ - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```.
+ - **speed** Speed will override duration. Speed allows you to set a relatively constant marquee speed regardless of the width of the containing element.
  - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default is ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
  - **pauseOnHover** On hover pause the marquee. If browser supports CSS3 and ```allowCss3Support``` is set to ```true``` than it will be done using CSS3. Otherwise this will be done using jQuery plugin https://github.com/tobia/Pause. Default is ```false```. Check the demo page for a demo.
  - **pauseOnCycle** On cycle, pause the marquee for ```delayBeforeStart``` milliseconds.
@@ -89,7 +90,7 @@ or use this if you want to start the plugin with no options but want to use data
  * you can also start the plugin using $('.marquee').marquee(); with defaults
 */
 $('.marquee').marquee({
-	//speed in milliseconds of the marquee
+	//duration in milliseconds of the marquee
 	duration: 15000,
 	//gap in pixels between the tickers
 	gap: 50,
