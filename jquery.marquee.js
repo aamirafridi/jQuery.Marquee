@@ -406,7 +406,7 @@
                         // Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
                         $styles.filter(":last").html(keyframeCss);
                     } else {
-                        $marqueeWrapper.append('<style>' + keyframeCss + '</style>');
+                        $('head').append('<style>' + keyframeCss + '</style>');
                     }
 
                     // Animation iteration event
