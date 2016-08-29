@@ -16,7 +16,7 @@ Install:
 Links:
 -----
  - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
- - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/1514/ to help you explain any issues you might face.
+ - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/1516/ to help you explain any issues you might face.
 
 Options:
 --------
