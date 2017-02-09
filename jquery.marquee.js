@@ -122,8 +122,9 @@
             });
 
             // Reintroduce speed as an option. It calculates duration as a factor of the container width
+            // measured in pixels per second.
             if (o.speed) {
-                o.duration = o.speed * parseInt($this.width(), 10);
+                o.duration = parseInt($this.width(), 10) / o.speed * 1000;
             }
 
             // Shortcut to see if direction is upward or downward
