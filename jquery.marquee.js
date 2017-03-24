@@ -136,7 +136,8 @@
             // Make copy of the element
             var $el = $this.find('.js-marquee').css({
                 'margin-right': o.gap,
-                'float': 'left'
+                'float': 'left',
+                'height': $this.height()
             });
 
             if (o.duplicated) {
@@ -270,7 +271,7 @@
                   loopCount = 1;
                 }
             } else if (o.startVisible) {
-                // We only have two different loops if marquee is duplicated and starts visible 
+                // We only have two different loops if marquee is duplicated and starts visible
                 loopCount = 2;
             } else {
                 if (verticalDir) {
