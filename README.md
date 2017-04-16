@@ -57,7 +57,7 @@ Here is the list of all methods:
 Usage:
 ----
 
-###HTML:
+### HTML:
 
 ```html
 <div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
@@ -72,7 +72,7 @@ or use this if you want to start the plugin with no options but want to use data
 ```
 
 
-###CSS:
+### CSS:
 ```css
 .marquee {
   width: 300px; /* the plugin works for responsive layouts so width is not necessary */
@@ -81,7 +81,7 @@ or use this if you want to start the plugin with no options but want to use data
 }
 ```
 
-###How to apply plugin:
+### How to apply plugin:
 ```javascript
 /**
  * Example of starting a plugin with options.
@@ -102,7 +102,7 @@ $('.marquee').marquee({
 });
 ```
 
-###How to use methods:
+### How to use methods:
 
 ```javascript
 var $mq = $('.marquee').marquee();
@@ -127,7 +127,7 @@ $('.marquee')
 
 ```
 
-###How to use events:
+### How to use events:
 
 Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 
