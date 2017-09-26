@@ -70,10 +70,6 @@
                         $this.trigger('resumed');
                     },
 
-                    toggle: function() {
-                        methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
-                    },
-
                     destroy: function() {
                         // Clear timer
                         clearTimeout($this.timer);
@@ -441,7 +437,8 @@
             $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.bind('mouseenter mouseleave', methods.toggle);
+                $this.bind('mouseenter', methods.pause);
+                $this.bind('mouseleave', methods.resume);
             }
 
             // If css3 animation is supported than call animate method at once
