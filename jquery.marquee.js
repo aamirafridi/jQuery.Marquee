@@ -442,7 +442,8 @@
             $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.bind('mouseenter mouseleave', methods.toggle);
+                $this.bind('mouseenter', methods.pause);
+                $this.bind('mouseleave', methods.resume);
             }
 
             // If css3 animation is supported than call animate method at once
