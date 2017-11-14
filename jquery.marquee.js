@@ -139,8 +139,7 @@
             // Make copy of the element
             var $el = $this.find('.js-marquee').css({
                 'margin-right': o.gap,
-                'float': 'left',
-                'height': $this.height()
+                'float': 'left'
             });
 
             if (o.duplicated) {
