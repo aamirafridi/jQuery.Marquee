@@ -247,25 +247,25 @@
             }
 
             var _rePositionVertically = function() {
-                $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px');
+                $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px') + ')');
             },
             _rePositionHorizontally = function() {
-                $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px');
+                $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px') + ')');
             };
 
             // if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
                 if (verticalDir) {
                     if (o.startVisible) {
-                        $marqueeWrapper.css('margin-top', 0);
+                        $marqueeWrapper.css('transform', 'translateY(0)');
                     } else {
-                        $marqueeWrapper.css('margin-top', o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px');
+                        $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px') + ')');
                     }
                 } else {
                     if (o.startVisible) {
-                        $marqueeWrapper.css('margin-left', 0);
+                        $marqueeWrapper.css('transform', 'translateX(0)');
                     } else {
-                        $marqueeWrapper.css('margin-left', o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px');
+                        $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px') + ')');
                     }
                 }
 
@@ -319,11 +319,11 @@
 
                         // Adjust the starting point of animation only when first loops finishes
                         if (loopCount > 2) {
-                            $marqueeWrapper.css('margin-top', o.direction == 'up' ? 0 : '-' + elHeight + 'px');
+                            $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? 0 : '-' + elHeight + 'px') + ')');
                         }
 
                         animationCss = {
-                            'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : 0
+                            'transform': 'translateY(' + (o.direction == 'up' ? '-' + elHeight + 'px' : 0) + ')'
                         };
                     } else if (o.startVisible) {
                         // This loop moves the marquee out of the container
@@ -333,7 +333,7 @@
                                 animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
                             }
                             animationCss = {
-                                'margin-top': o.direction == 'up' ? '-' + elHeight + 'px' : containerHeight + 'px'
+                                'transform': 'translateY(' + (o.direction == 'up' ? '-' + elHeight + 'px' : containerHeight + 'px') + ')'
                             };
                             loopCount++;
                         } else if (loopCount === 3) {
@@ -350,7 +350,7 @@
                     } else {
                         _rePositionVertically();
                         animationCss = {
-                            'margin-top': o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px'
+                            'transform': 'translateY(' + (o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px') + ')'
                         };
                     }
                 } else {
@@ -358,11 +358,11 @@
 
                         // Adjust the starting point of animation only when first loops finishes
                         if (loopCount > 2) {
-                            $marqueeWrapper.css('margin-left', o.direction == 'left' ? 0 : '-' + elWidth + 'px');
+                            $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? 0 : '-' + elWidth + 'px') + ')');
                         }
 
                         animationCss = {
-                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : 0
+                            'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : 0) + ')'
                         };
 
                     } else if (o.startVisible) {
@@ -373,7 +373,7 @@
                                 animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
                             }
                             animationCss = {
-                                'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
+                                'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
                             };
                             loopCount++;
                         } else if (loopCount === 3) {
@@ -390,7 +390,7 @@
                     } else {
                         _rePositionHorizontally();
                         animationCss = {
-                            'margin-left': o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px'
+                            'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
                         };
                     }
                 }
