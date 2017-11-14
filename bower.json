@@ -1,6 +1,6 @@
 {
   "name": "jquery.marquee",
-  "description": "jQuery plugin to scroll the text like the old traditional marquee http://aamirafridi.com/jquery/jquery-marquee-plugin — Edit",
+  "description": "jQuery plugin to scroll the text like the old traditional marquee http://aamirafridi.com/jquery/jquery-marquee-plugin",
   "main": "jquery.marquee.min.js",
   "authors": [
     "aamirafridi@gmail.com"
