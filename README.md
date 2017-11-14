@@ -8,7 +8,7 @@ Install:
  - **NPM:** `npm install jquery.marquee --save`
  - **CDN:** [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee)
 ```html
-<script src="//cdn.jsdelivr.net/jquery.marquee/1.3.9/jquery.marquee.min.js" type="text/javascript"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.4.2/jquery.marquee.min.js" type="text/javascript"></script>
 ```
 - **Bower**: `bower install jQuery.Marquee`
 - **Download:** [zip](https://github.com/aamirafridi/jQuery.Marquee/archive/master.zip)
