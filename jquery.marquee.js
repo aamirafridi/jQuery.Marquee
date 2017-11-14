@@ -78,7 +78,7 @@
                         // Clear timer
                         clearTimeout($this.timer);
                         // Unbind all events
-                        $this.find("*").andSelf().unbind();
+                        $this.find("*").addBack().unbind();
                         // Just unwrap the elements that has been added using this plugin
                         $this.html($this.find('.js-marquee:first').html());
                     }
@@ -139,7 +139,8 @@
             // Make copy of the element
             var $el = $this.find('.js-marquee').css({
                 'margin-right': o.gap,
-                'float': 'left'
+                'float': 'left',
+                'height': $this.height()
             });
 
             if (o.duplicated) {
@@ -273,7 +274,7 @@
                   loopCount = 1;
                 }
             } else if (o.startVisible) {
-                // We only have two different loops if marquee is duplicated and starts visible 
+                // We only have two different loops if marquee is duplicated and starts visible
                 loopCount = 2;
             } else {
                 if (verticalDir) {
@@ -409,7 +410,7 @@
                         // Bug fixed for jQuery 1.3.x - Instead of using .last(), use following
                         $styles.filter(":last").html(keyframeCss);
                     } else {
-                        $marqueeWrapper.append('<style>' + keyframeCss + '</style>');
+                        $('head').append('<style>' + keyframeCss + '</style>');
                     }
 
                     // Animation iteration event
@@ -444,7 +445,8 @@
             $this.bind('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.bind('mouseenter mouseleave', methods.toggle);
+                $this.bind('mouseenter', methods.pause);
+                $this.bind('mouseleave', methods.resume);
             }
 
             // If css3 animation is supported than call animate method at once
