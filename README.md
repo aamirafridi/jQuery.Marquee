@@ -1,14 +1,14 @@
 jQuery-Marquee with CSS3 Support
 ==============
 
-A **5.51 KB** (minified) jQuery plugin to scroll the text like the old traditional marquee.
+A **5.53 KB** (minified) jQuery plugin to scroll the text like the old traditional marquee.
 
 Install:
 ----
  - **NPM:** `npm install jquery.marquee --save`
  - **CDN:** [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee)
 ```html
-<script src="//cdn.jsdelivr.net/gh/aamirafridi/jQuery.Marquee@1.4.1/jquery.marquee.min.js" type="text/javascript"></script>
+<script src="//cdn.jsdelivr.net/jquery.marquee/1.3.9/jquery.marquee.min.js" type="text/javascript"></script>
 ```
 - **Bower**: `bower install jQuery.Marquee`
 - **Download:** [zip](https://github.com/aamirafridi/jQuery.Marquee/archive/master.zip)
@@ -16,7 +16,7 @@ Install:
 Links:
 -----
  - **Demo:** http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
- - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/1516/ to help you explain any issues you might face.
+ - **jsFiddle:** http://jsfiddle.net/aamir/jc7F3/285/ to help you explain any issues you might face.
 
 Options:
 --------
@@ -25,8 +25,9 @@ Options:
  - **easing** Requires jQuery easing plugin http://gsgd.co.uk/sandbox/jquery/easing/. Default is ```'linear'```
  - **delayBeforeStart** Time in milliseconds before the marquee starts animating. Default is ```1000```
  - **direction** Direction towards which the marquee will animate ```'left' / 'right' / 'up' / 'down'```. Default is ```'left'```. Todo: need to change this to ```ltr/rtl``` etc
- - **duplicated** Should the marquee be duplicated to show an effect of continuous flow. Use this only when the text is shorter than the container and utilize the ```gap``` option to pad it, to prevent the marquee from bouncing around. Default is ```false```
- - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```. This option is the old ```speed``` option which still works but duration is the more correct word.
+ - **duplicated** Should the marquee be duplicated to show an effect of continuous flow. Use this only when the text is shorter than the container. Default is ```false```
+ - **duration** Duration in milliseconds in which you want your element to travel. Default is ```5000```.
+ - **speed** Speed will override duration. Speed allows you to set a relatively constant marquee speed regardless of the width of the containing element. Speed is measured in pixels per second.
  - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default is ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
  - **pauseOnHover** On hover pause the marquee. If browser supports CSS3 and ```allowCss3Support``` is set to ```true``` than it will be done using CSS3. Otherwise this will be done using jQuery plugin https://github.com/tobia/Pause. Default is ```false```. Check the demo page for a demo.
  - **pauseOnCycle** On cycle, pause the marquee for ```delayBeforeStart``` milliseconds.
@@ -57,7 +58,7 @@ Here is the list of all methods:
 Usage:
 ----
 
-### HTML:
+###HTML:
 
 ```html
 <div class='marquee'>Lorem ipsum dolor sit amet, consectetur adipiscing elit END.</div>
@@ -72,7 +73,7 @@ or use this if you want to start the plugin with no options but want to use data
 ```
 
 
-### CSS:
+###CSS:
 ```css
 .marquee {
   width: 300px; /* the plugin works for responsive layouts so width is not necessary */
@@ -81,7 +82,7 @@ or use this if you want to start the plugin with no options but want to use data
 }
 ```
 
-### How to apply plugin:
+###How to apply plugin:
 ```javascript
 /**
  * Example of starting a plugin with options.
@@ -89,7 +90,7 @@ or use this if you want to start the plugin with no options but want to use data
  * you can also start the plugin using $('.marquee').marquee(); with defaults
 */
 $('.marquee').marquee({
-	//speed in milliseconds of the marquee
+	//duration in milliseconds of the marquee
 	duration: 15000,
 	//gap in pixels between the tickers
 	gap: 50,
@@ -102,7 +103,7 @@ $('.marquee').marquee({
 });
 ```
 
-### How to use methods:
+###How to use methods:
 
 ```javascript
 var $mq = $('.marquee').marquee();
@@ -127,7 +128,7 @@ $('.marquee')
 
 ```
 
-### How to use events:
+###How to use events:
 
 Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 
