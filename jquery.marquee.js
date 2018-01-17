@@ -221,7 +221,7 @@
                     keyframeString = '';
 
                 // Check css3 support
-                if (elm.style.animation) {
+                if (elm.style.animation !== undefined) {
                     keyframeString = '@keyframes ' + animationName + ' ';
                     css3AnimationIsSupported = true;
                 }
