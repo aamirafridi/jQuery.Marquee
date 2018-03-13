@@ -474,6 +474,8 @@
         duplicated: false,
         // duration in milliseconds of the marquee in milliseconds
         duration: 5000,
+        // Speed allows you to set a relatively constant marquee speed regardless of the width of the containing element. Speed is measured in pixels per second.
+        speed: 0,
         // gap in pixels between the tickers
         gap: 20,
         // on cycle pause the marquee
