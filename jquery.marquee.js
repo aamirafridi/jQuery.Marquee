@@ -78,7 +78,7 @@
                         // Clear timer
                         clearTimeout($this.timer);
                         // Unbind all events
-                        $this.find("*").addBack().unbind();
+                        $this.find("*").addBack().off();
                         // Just unwrap the elements that has been added using this plugin
                         $this.html($this.find('.js-marquee:first').html());
                     }
@@ -440,12 +440,12 @@
             };
 
             // bind pause and resume events
-            $this.bind('pause', methods.pause);
-            $this.bind('resume', methods.resume);
+            $this.on('pause', methods.pause);
+            $this.on('resume', methods.resume);
 
             if (o.pauseOnHover) {
-                $this.bind('mouseenter', methods.pause);
-                $this.bind('mouseleave', methods.resume);
+                $this.on('mouseenter', methods.pause);
+                $this.on('mouseleave', methods.resume);
             }
 
             // If css3 animation is supported than call animate method at once
