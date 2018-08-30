@@ -4,7 +4,7 @@
 jQuery-Marquee with CSS3 Support [![Known Vulnerabilities](https://snyk.io/test/github/aamirafridi/jquery.marquee/badge.svg?targetFile=package.json)](https://snyk.io/test/github/aamirafridi/jquery.marquee?targetFile=package.json)
 ==============
 
-A **5.56 KB** (minified) jQuery plugin to scroll the text like the old traditional marquee.
+A **~8 KB** (minified) jQuery plugin to scroll the text like the old traditional marquee.
 
 Install:
 ----
