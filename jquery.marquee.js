@@ -71,7 +71,7 @@
                     },
 
                     toggle: function() {
-                        methods[$this.data('runningStatus') == 'resumed' ? 'pause' : 'resume']();
+                        methods[$this.data('runningStatus') === 'resumed' ? 'pause' : 'resume']();
                     },
 
                     destroy: function() {
@@ -104,7 +104,7 @@
                jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
             var dataAttributes = {},
             attr;
-            $.each(o, function(key, value) {
+            $.each(o, function(key) {
                 // Check if element has this data attribute
                 attr = $this.attr('data-' + key);
                 if (typeof attr !== 'undefined') {
@@ -128,7 +128,7 @@
             }
 
             // Shortcut to see if direction is upward or downward
-            verticalDir = o.direction == 'up' || o.direction == 'down';
+            verticalDir = o.direction === 'up' || o.direction === 'down';
 
             // no gap if not duplicated
             o.gap = o.duplicated ? parseInt(o.gap) : 0;
@@ -166,9 +166,11 @@
                 });
 
                 // Remove bottom margin from 2nd element if duplicated
-                if (o.duplicated) $this.find('.js-marquee:last').css({
-                    'margin-bottom': 0
-                });
+                if (o.duplicated) {
+		    $this.find('.js-marquee:last').css({
+			'margin-bottom': 0
+		    });
+		}
 
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
@@ -212,8 +214,7 @@
             }
 
             if (o.allowCss3Support) {
-                var
-                elm = document.body || document.createElement('div'),
+                var elm = document.body || document.createElement('div'),
                     animationName = 'marqueeAnimation-' + Math.floor(Math.random() * 10000000),
                     domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
                     animationString = 'animation',
@@ -246,10 +247,10 @@
             }
 
             var _rePositionVertically = function() {
-                $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? containerHeight + 'px' : '-' + elHeight + 'px') + ')');
+                $marqueeWrapper.css('transform', 'translateY(' + (o.direction === 'up' ? containerHeight + 'px' : '-' + elHeight + 'px') + ')');
             },
             _rePositionHorizontally = function() {
-                $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? containerWidth + 'px' : '-' + elWidth + 'px') + ')');
+                $marqueeWrapper.css('transform', 'translateX(' + (o.direction === 'left' ? containerWidth + 'px' : '-' + elWidth + 'px') + ')');
             };
 
             // if duplicated option is set to true than position the wrapper
@@ -258,13 +259,13 @@
                     if (o.startVisible) {
                         $marqueeWrapper.css('transform', 'translateY(0)');
                     } else {
-                        $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px') + ')');
+                        $marqueeWrapper.css('transform', 'translateY(' + (o.direction === 'up' ? containerHeight + 'px' : '-' + ((elHeight * 2) - o.gap) + 'px') + ')');
                     }
                 } else {
                     if (o.startVisible) {
                         $marqueeWrapper.css('transform', 'translateX(0)');
                     } else {
-                        $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px') + ')');
+                        $marqueeWrapper.css('transform', 'translateX(' + (o.direction === 'left' ? containerWidth + 'px' : '-' + ((elWidth * 2) - o.gap) + 'px') + ')');
                     }
                 }
 
@@ -290,9 +291,9 @@
                     if (loopCount === 1) {
                         o._originalDuration = o.duration;
                         if (verticalDir) {
-                            o.duration = o.direction == 'up' ? o.duration + (containerHeight / ((elHeight) / o.duration)) : o.duration * 2;
+                            o.duration = o.direction === 'up' ? o.duration + (containerHeight / ((elHeight) / o.duration)) : o.duration * 2;
                         } else {
-                            o.duration = o.direction == 'left' ? o.duration + (containerWidth / ((elWidth) / o.duration)) : o.duration * 2;
+                            o.duration = o.direction === 'left' ? o.duration + (containerWidth / ((elWidth) / o.duration)) : o.duration * 2;
                         }
                         // Adjust the css3 animation as well
                         if (animationCss3Str) {
@@ -318,11 +319,11 @@
 
                         // Adjust the starting point of animation only when first loops finishes
                         if (loopCount > 2) {
-                            $marqueeWrapper.css('transform', 'translateY(' + (o.direction == 'up' ? 0 : '-' + elHeight + 'px') + ')');
+                            $marqueeWrapper.css('transform', 'translateY(' + (o.direction === 'up' ? 0 : '-' + elHeight + 'px') + ')');
                         }
 
                         animationCss = {
-                            'transform': 'translateY(' + (o.direction == 'up' ? '-' + elHeight + 'px' : 0) + ')'
+                            'transform': 'translateY(' + (o.direction === 'up' ? '-' + elHeight + 'px' : 0) + ')'
                         };
                     } else if (o.startVisible) {
                         // This loop moves the marquee out of the container
@@ -332,7 +333,7 @@
                                 animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
                             }
                             animationCss = {
-                                'transform': 'translateY(' + (o.direction == 'up' ? '-' + elHeight + 'px' : containerHeight + 'px') + ')'
+                                'transform': 'translateY(' + (o.direction === 'up' ? '-' + elHeight + 'px' : containerHeight + 'px') + ')'
                             };
                             loopCount++;
                         } else if (loopCount === 3) {
@@ -349,7 +350,7 @@
                     } else {
                         _rePositionVertically();
                         animationCss = {
-                            'transform': 'translateY(' + (o.direction == 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px') + ')'
+                            'transform': 'translateY(' + (o.direction === 'up' ? '-' + ($marqueeWrapper.height()) + 'px' : containerHeight + 'px') + ')'
                         };
                     }
                 } else {
@@ -357,11 +358,11 @@
 
                         // Adjust the starting point of animation only when first loops finishes
                         if (loopCount > 2) {
-                            $marqueeWrapper.css('transform', 'translateX(' + (o.direction == 'left' ? 0 : '-' + elWidth + 'px') + ')');
+                            $marqueeWrapper.css('transform', 'translateX(' + (o.direction === 'left' ? 0 : '-' + elWidth + 'px') + ')');
                         }
 
                         animationCss = {
-                            'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : 0) + ')'
+                            'transform': 'translateX(' + (o.direction === 'left' ? '-' + elWidth + 'px' : 0) + ')'
                         };
 
                     } else if (o.startVisible) {
@@ -372,7 +373,7 @@
                                 animationCss3Str = animationName + ' ' + o.duration / 1000 + 's ' + o.delayBeforeStart / 1000 + 's ' + o.css3easing;
                             }
                             animationCss = {
-                                'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
+                                'transform': 'translateX(' + (o.direction === 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
                             };
                             loopCount++;
                         } else if (loopCount === 3) {
@@ -389,7 +390,7 @@
                     } else {
                         _rePositionHorizontally();
                         animationCss = {
-                            'transform': 'translateX(' + (o.direction == 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
+                            'transform': 'translateX(' + (o.direction === 'left' ? '-' + elWidth + 'px' : containerWidth + 'px') + ')'
                         };
                     }
                 }
