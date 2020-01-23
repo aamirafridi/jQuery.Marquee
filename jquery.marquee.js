@@ -2,6 +2,14 @@
  * jQuery.marquee - scrolling text like old marquee element
  * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
  */;
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else {
+    factory(jQuery);
+  }
+}
 (function($) {
     $.fn.marquee = function(options) {
         return this.each(function() {
@@ -486,4 +494,4 @@
         // the marquee is visible initially positioned next to the border towards it will be moving
         startVisible: false
     };
-})(jQuery);
+}));
