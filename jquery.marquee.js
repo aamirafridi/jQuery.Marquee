@@ -135,7 +135,7 @@
             o.gap = o.duplicated ? parseInt(o.gap, 10) : 0;
 
             // wrap inner content into a div
-            $this.wrapInner("<div class="js-marquee"></div>");
+            $this.wrapInner("<div class='js-marquee'></div>");
 
             // Make copy of the element
             var $el = $this.find(".js-marquee").css({
@@ -148,7 +148,7 @@
             }
 
             // wrap both inner elements into one div
-            $this.wrapInner("<div style="width:100000px" class="js-marquee-wrapper"></div>");
+            $this.wrapInner("<div style='width:100000px' class='js-marquee-wrapper'></div>");
 
             // Save the reference of the wrapper
             $marqueeWrapper = $this.find(".js-marquee-wrapper");
