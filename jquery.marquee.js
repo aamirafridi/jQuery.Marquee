@@ -1,7 +1,7 @@
 /**
  * jQuery.marquee - scrolling text like old marquee element
  * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
- */;
+ */
 
 (function (factory) {
   if (typeof define === "function" && define.amd) {
@@ -108,8 +108,8 @@
             }
 
             /* Check if element has data attributes. They have top priority
-               For details https://twitter.com/aamirafridi/status/403848044069679104 - Can"t find a better solution :/
-               jQuery 1.3.2 doesn"t support $.data().KEY hence writting the following */
+               For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
+               jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
             var dataAttributes = {},
             attr;
             $.each(o, function(key) {
