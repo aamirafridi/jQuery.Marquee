@@ -143,7 +143,10 @@
             });
 
             if (o.duplicated) {
-                $el.clone(true).appendTo($this);
+                var max = o.duplicated > 1 ? o.duplicated : 1;
+                for (var i=0; i<max; i++) {
+                    $el.clone(true).appendTo($this);
+                }
             }
 
             // wrap both inner elements into one div
