@@ -1,5 +1,6 @@
 # This plugin/repo is looking for a maintainer. Please email aamirafridi@gmail.com if you are interested.
 
+⚠️ This library is not maintained. Pull-requests and issues are not actively monitored.
 
 # jQuery-Marquee with CSS3 Support [![Known Vulnerabilities](https://snyk.io/test/github/aamirafridi/jquery.marquee/badge.svg?targetFile=package.json)](https://snyk.io/test/github/aamirafridi/jquery.marquee?targetFile=package.json)
 [![](https://data.jsdelivr.com/v1/package/npm/jquery.marquee/badge)](https://www.jsdelivr.com/package/npm/jquery.marquee)
