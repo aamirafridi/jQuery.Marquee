@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/aamirafridi/jQuery.Marquee#readme",
   "devDependencies": {
-    "uglify": "^0.1.5"
+    "uglify-js": "^3.12.8"
   }
 }
