@@ -4,7 +4,7 @@
   "description": "jQuery plugin to scroll the text like the old traditional marquee http://aamirafridi.com/jquery/jquery-marquee-plugin — Edit",
   "main": "jquery.marquee.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "minify": "uglify jquery.marquee.js -o jquery.marquee.min.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/aamirafridi/jQuery.Marquee/issues"
   },
-  "homepage": "https://github.com/aamirafridi/jQuery.Marquee#readme"
+  "homepage": "https://github.com/aamirafridi/jQuery.Marquee#readme",
+  "devDependencies": {
+    "uglify": "^0.1.5"
+  }
 }
