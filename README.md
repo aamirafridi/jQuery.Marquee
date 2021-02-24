@@ -121,7 +121,6 @@ import  'jquery.marquee';
 
 export default class Marquee extends Component {
   componentDidMount() {
-    this.$el = $(this.el);
     this.$el.marquee({
       duration: 15000,
       gap: 50,
@@ -132,7 +131,7 @@ export default class Marquee extends Component {
 
   render() {
     return (
-      <div ref={(el) => this.el = el}>
+      <div ref={(el) => this.$el = $(el)}>
         I'm using jQuery.Marquee with React!!!!
       </div>
     );
@@ -156,8 +155,7 @@ export default function Marquee(props) {
       duration: 5000,
       gap: 50,
       delayBeforeStart: 0,
-      direction: 'left',
-      duplicated: true
+      direction: 'left'
     });
   });
 
