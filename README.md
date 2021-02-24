@@ -119,7 +119,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import  'jquery.marquee';
 
-export default class Marquee extends Component {
+class Marquee extends Component {
   componentDidMount() {
     this.$el.marquee({
       duration: 15000,
@@ -145,7 +145,7 @@ import React, { useEffect, useRef } from 'react';
 import $ from 'jquery';
 import  'jquery.marquee';
 
-export default function Marquee(props) {
+function Marquee(props) {
   const el = useRef();
 
   useEffect(function() {
