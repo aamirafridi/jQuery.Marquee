@@ -146,10 +146,10 @@ import $ from 'jquery';
 import  'jquery.marquee';
 
 export default function Marquee(props) {
-  const marqueeEl = useRef();
+  const el = useRef();
 
   useEffect(function() {
-    const $el = $(marqueeEl.current);
+    const $el = $(el.current);
 
     $el.marquee({
       duration: 5000,
@@ -160,7 +160,7 @@ export default function Marquee(props) {
   });
 
   return (
-    <div ref={marqueeEl}>
+    <div ref={el}>
       I'm using jQuery.Marquee with React!!!!
     </div>
   );
