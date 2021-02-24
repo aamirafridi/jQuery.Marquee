@@ -1,88 +1,97 @@
 /**
  * jQuery.marquee - scrolling text like old marquee element
  * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
- */;
-(function($) {
+ */
+;(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(jQuery);
+    }
+})(function($) {
     $.fn.marquee = function(options) {
         return this.each(function() {
             // Extend the options if any provided
             var o = $.extend({}, $.fn.marquee.defaults, options),
-                $this = $(this),
-                $marqueeWrapper, containerWidth, animationCss, verticalDir, elWidth,
-                loopCount = 3,
-                playState = 'animation-play-state',
-                css3AnimationIsSupported = false,
+              $this = $(this),
+              $marqueeWrapper, containerWidth, animationCss, verticalDir, elWidth,
+              loopCount = 3,
+              playState = 'animation-play-state',
+              css3AnimationIsSupported = false,
 
-                // Private methods
-                _prefixedEvent = function(element, type, callback) {
-                    var pfx = ["webkit", "moz", "MS", "o", ""];
-                    for (var p = 0; p < pfx.length; p++) {
-                        if (!pfx[p]) type = type.toLowerCase();
-                        element.addEventListener(pfx[p] + type, callback, false);
-                    }
-                },
+              // Private methods
+              _prefixedEvent = function(element, type, callback) {
+                  var pfx = ["webkit", "moz", "MS", "o", ""];
+                  for (var p = 0; p < pfx.length; p++) {
+                      if (!pfx[p]) type = type.toLowerCase();
+                      element.addEventListener(pfx[p] + type, callback, false);
+                  }
+              },
 
-                _objToString = function(obj) {
-                    var tabjson = [];
-                    for (var p in obj) {
-                        if (obj.hasOwnProperty(p)) {
-                            tabjson.push(p + ':' + obj[p]);
-                        }
-                    }
-                    tabjson.push();
-                    return '{' + tabjson.join(',') + '}';
-                },
+              _objToString = function(obj) {
+                  var tabjson = [];
+                  for (var p in obj) {
+                      if (obj.hasOwnProperty(p)) {
+                          tabjson.push(p + ':' + obj[p]);
+                      }
+                  }
+                  tabjson.push();
+                  return '{' + tabjson.join(',') + '}';
+              },
 
-                _startAnimationWithDelay = function() {
-                    $this.timer = setTimeout(animate, o.delayBeforeStart);
-                },
+              _startAnimationWithDelay = function() {
+                  $this.timer = setTimeout(animate, o.delayBeforeStart);
+              },
 
-                // Public methods
-                methods = {
-                    pause: function() {
-                        if (css3AnimationIsSupported && o.allowCss3Support) {
-                            $marqueeWrapper.css(playState, 'paused');
-                        } else {
-                            // pause using pause plugin
-                            if ($.fn.pause) {
-                                $marqueeWrapper.pause();
-                            }
-                        }
-                        // save the status
-                        $this.data('runningStatus', 'paused');
-                        // fire event
-                        $this.trigger('paused');
-                    },
+              // Public methods
+              methods = {
+                  pause: function() {
+                      if (css3AnimationIsSupported && o.allowCss3Support) {
+                          $marqueeWrapper.css(playState, 'paused');
+                      } else {
+                          // pause using pause plugin
+                          if ($.fn.pause) {
+                              $marqueeWrapper.pause();
+                          }
+                      }
+                      // save the status
+                      $this.data('runningStatus', 'paused');
+                      // fire event
+                      $this.trigger('paused');
+                  },
 
-                    resume: function() {
-                        // resume using css3
-                        if (css3AnimationIsSupported && o.allowCss3Support) {
-                            $marqueeWrapper.css(playState, 'running');
-                        } else {
-                            // resume using pause plugin
-                            if ($.fn.resume) {
-                                $marqueeWrapper.resume();
-                            }
-                        }
-                        // save the status
-                        $this.data('runningStatus', 'resumed');
-                        // fire event
-                        $this.trigger('resumed');
-                    },
+                  resume: function() {
+                      // resume using css3
+                      if (css3AnimationIsSupported && o.allowCss3Support) {
+                          $marqueeWrapper.css(playState, 'running');
+                      } else {
+                          // resume using pause plugin
+                          if ($.fn.resume) {
+                              $marqueeWrapper.resume();
+                          }
+                      }
+                      // save the status
+                      $this.data('runningStatus', 'resumed');
+                      // fire event
+                      $this.trigger('resumed');
+                  },
 
-                    toggle: function() {
-                        methods[$this.data('runningStatus') === 'resumed' ? 'pause' : 'resume']();
-                    },
+                  toggle: function() {
+                      methods[$this.data('runningStatus') === 'resumed' ? 'pause' : 'resume']();
+                  },
 
-                    destroy: function() {
-                        // Clear timer
-                        clearTimeout($this.timer);
-                        // Unbind all events
-                        $this.find("*").addBack().off();
-                        // Just unwrap the elements that has been added using this plugin
-                        $this.html($this.find('.js-marquee:first').html());
-                    }
-                };
+                  destroy: function() {
+                      // Clear timer
+                      clearTimeout($this.timer);
+                      // Unbind all events
+                      $this.find("*").addBack().off();
+                      // Just unwrap the elements that has been added using this plugin
+                      $this.html($this.find('.js-marquee:first').html());
+                  }
+              };
 
             // Check for methods
             if (typeof options === 'string') {
@@ -103,7 +112,7 @@
                For details https://twitter.com/aamirafridi/status/403848044069679104 - Can't find a better solution :/
                jQuery 1.3.2 doesn't support $.data().KEY hence writting the following */
             var dataAttributes = {},
-            attr;
+              attr;
             $.each(o, function(key) {
                 // Check if element has this data attribute
                 attr = $this.attr('data-' + key);
@@ -167,10 +176,10 @@
 
                 // Remove bottom margin from 2nd element if duplicated
                 if (o.duplicated) {
-		    $this.find('.js-marquee:last').css({
-			'margin-bottom': 0
-		    });
-		}
+                    $this.find('.js-marquee:last').css({
+                        'margin-bottom': 0
+                    });
+                }
 
                 var elHeight = $this.find('.js-marquee:first').height() + o.gap;
 
@@ -215,11 +224,11 @@
 
             if (o.allowCss3Support) {
                 var elm = document.body || document.createElement('div'),
-                    animationName = 'marqueeAnimation-' + Math.floor(Math.random() * 10000000),
-                    domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
-                    animationString = 'animation',
-                    animationCss3Str = '',
-                    keyframeString = '';
+                  animationName = 'marqueeAnimation-' + Math.floor(Math.random() * 10000000),
+                  domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+                  animationString = 'animation',
+                  animationCss3Str = '',
+                  keyframeString = '';
 
                 // Check css3 support
                 if (elm.style.animation !== undefined) {
@@ -247,11 +256,11 @@
             }
 
             var _rePositionVertically = function() {
-                $marqueeWrapper.css('transform', 'translateY(' + (o.direction === 'up' ? containerHeight + 'px' : '-' + elHeight + 'px') + ')');
-            },
-            _rePositionHorizontally = function() {
-                $marqueeWrapper.css('transform', 'translateX(' + (o.direction === 'left' ? containerWidth + 'px' : '-' + elWidth + 'px') + ')');
-            };
+                  $marqueeWrapper.css('transform', 'translateY(' + (o.direction === 'up' ? containerHeight + 'px' : '-' + elHeight + 'px') + ')');
+              },
+              _rePositionHorizontally = function() {
+                  $marqueeWrapper.css('transform', 'translateX(' + (o.direction === 'left' ? containerWidth + 'px' : '-' + elWidth + 'px') + ')');
+              };
 
             // if duplicated option is set to true than position the wrapper
             if (o.duplicated) {
@@ -271,7 +280,7 @@
 
                 // If the text starts out visible we can skip the two initial loops
                 if (!o.startVisible) {
-                  loopCount = 1;
+                    loopCount = 1;
                 }
             } else if (o.startVisible) {
                 // We only have two different loops if marquee is duplicated and starts visible
@@ -341,9 +350,9 @@
                             o.duration = o._completeDuration;
                             // Adjust the css3 animation as well
                             if (animationCss3Str) {
-                                    animationName = animationName + '0';
-                                    keyframeString = $.trim(keyframeString) + '0 ';
-                                    animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
+                                animationName = animationName + '0';
+                                keyframeString = $.trim(keyframeString) + '0 ';
+                                animationCss3Str = animationName + ' ' + o.duration / 1000 + 's 0s infinite ' + o.css3easing;
                             }
                             _rePositionVertically();
                         }
@@ -403,7 +412,7 @@
                     // Add css3 animation to the element
                     $marqueeWrapper.css(animationString, animationCss3Str);
                     var keyframeCss = keyframeString + ' { 100%  ' + _objToString(animationCss) + '}',
-                         $styles = $marqueeWrapper.find('style');
+                      $styles = $marqueeWrapper.find('style');
 
                     // Now add the keyframe animation to the marquee element
                     if ($styles.length !== 0) {
@@ -486,4 +495,4 @@
         // the marquee is visible initially positioned next to the border towards it will be moving
         startVisible: false
     };
-})(jQuery);
+});

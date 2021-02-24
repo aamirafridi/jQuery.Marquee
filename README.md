@@ -1,7 +1,3 @@
-# This plugin/repo is looking for a maintainer. Please email aamirafridi@gmail.com if you are interested.
-
-⚠️ This library is not maintained. Pull-requests and issues are not actively monitored. If you want a more modern and actively maintained version check out [Mattiacoll's vanilla-js](https://github.com/mattiacoll/vanilla-marquee)
-
 # jQuery-Marquee with CSS3 Support [![Known Vulnerabilities](https://snyk.io/test/github/aamirafridi/jquery.marquee/badge.svg?targetFile=package.json)](https://snyk.io/test/github/aamirafridi/jquery.marquee?targetFile=package.json)
 [![](https://data.jsdelivr.com/v1/package/npm/jquery.marquee/badge)](https://www.jsdelivr.com/package/npm/jquery.marquee)
 
@@ -63,6 +59,13 @@ Here is the list of all methods:
 
 Usage:
 ----
+### Requiring in The Node.js Environment
+Here's how to import the plugin as a CommonJS module:
+
+```javascript
+var $ = require("jquery");
+require("jquery.marquee");
+```
 
 ### HTML:
 
@@ -89,7 +92,7 @@ Alternatively you can provide all the options listed above as data attributes:
 }
 ```
 
-### How to apply plugin:
+### How to Apply Plugin:
 ```javascript
 /**
  * Example of starting a plugin with options.
@@ -110,7 +113,61 @@ $('.marquee').marquee({
 });
 ```
 
-### How to use methods:
+### How to Use in a React Component (Class-Based)
+```jsx
+import React, { Component } from 'react';
+import $ from 'jquery';
+import  'jquery.marquee';
+
+export default class Marquee extends Component {
+  componentDidMount() {
+    this.$el.marquee({
+      duration: 15000,
+      gap: 50,
+      delayBeforeStart: 0,
+      direction: 'left'
+    });
+  }
+
+  render() {
+    return (
+      <div ref={(el) => this.$el = $(el)}>
+        I'm using jQuery.Marquee with React!!!!
+      </div>
+    );
+  }
+}
+```
+
+### How to Use in a React Component (Functional)
+```jsx
+import React, { useEffect, useRef } from 'react';
+import $ from 'jquery';
+import  'jquery.marquee';
+
+export default function Marquee(props) {
+  const el = useRef();
+
+  useEffect(function() {
+    const $el = $(el.current);
+
+    $el.marquee({
+      duration: 5000,
+      gap: 50,
+      delayBeforeStart: 0,
+      direction: 'left'
+    });
+  });
+
+  return (
+    <div ref={el}>
+      I'm using jQuery.Marquee with React!!!!
+    </div>
+  );
+}
+```
+
+### How to Use Methods:
 
 ```javascript
 var $mq = $('.marquee').marquee();
@@ -135,7 +192,7 @@ $('.marquee')
 
 ```
 
-### How to use events:
+### How to Use Events:
 
 Check demo page for example: http://aamirafridi.com/jquery/jquery-marquee-plugin#examples
 
