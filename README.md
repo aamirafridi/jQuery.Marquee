@@ -29,6 +29,7 @@ Options:
  - **delayBeforeStart** Time in milliseconds before the marquee starts animating. Default: ```1000```
  - **direction** Direction towards which the marquee will animate ```'left' / 'right' / 'up' / 'down'```. Default: ```'left'```. Todo: need to change this to ```ltr/rtl``` etc
  - **duplicated** Should the marquee be duplicated to show an effect of continuous flow. Use this only when the text is shorter than the container. Default: ```false```
+ - **duplicateCount** The number of duplicates to be added. Default: ```1```
  - **duration** Duration in milliseconds in which you want your element to travel. Default: ```5000```.
  - **speed** Speed will override duration. Speed allows you to set a relatively constant marquee speed regardless of the width of the containing element. Speed is measured in pixels per second.
  - **gap** Gap in pixels between the tickers. Will work only when the ```duplicated``` option is set to ```true```. Default: ```20```. Note: ```20``` means ```20px``` so no need to use ```'20px'``` as the value.
@@ -110,7 +111,9 @@ $('.marquee').marquee({
 	//'left' or 'right'
 	direction: 'left',
 	//true or false - should the marquee be duplicated to show an effect of continues flow
-	duplicated: true
+	duplicated: true,
+  //duplicate the message three times
+  duplicateCount: 3
 });
 ```
 
@@ -228,6 +231,9 @@ $(window).load(function() {
 
 Updates:
 -----------
+
+**Update (2 Jan 2025):**
+Added the `duplicateCount` parameter to control the number of duplicates that will be added when `duplicate` is `true`. Thanks to @tip2tail.
 
 **Update (8 Mar 2016):**
 Now plugin have new option: **startVisible** The marquee will be visible in the start if set to `true`. Thanks to @nuke-ellington 👍

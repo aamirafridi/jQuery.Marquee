@@ -152,7 +152,13 @@
             });
 
             if (o.duplicated) {
-                $el.clone(true).appendTo($this);
+                if (o.duplicateCount <= 0) {
+                    // If duplication enabled then the duplicate count must be a positive number
+                    o.duplicateCount = 1;
+                }
+                for (let duplicateLoop = 0; duplicateLoop < o.duplicateCount; duplicateLoop++) {
+                    $el.clone(true).appendTo($this);
+                }
             }
 
             // wrap both inner elements into one div
@@ -482,6 +488,8 @@
         direction: 'left',
         // true or false - should the marquee be duplicated to show an effect of continues flow
         duplicated: false,
+        // number of duplicates to create, default is 1
+        duplicateCount: 1,
         // duration in milliseconds of the marquee in milliseconds
         duration: 5000,
         // Speed allows you to set a relatively constant marquee speed regardless of the width of the containing element. Speed is measured in pixels per second.
