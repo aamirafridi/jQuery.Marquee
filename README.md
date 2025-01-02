@@ -112,8 +112,8 @@ $('.marquee').marquee({
 	direction: 'left',
 	//true or false - should the marquee be duplicated to show an effect of continues flow
 	duplicated: true,
-  //duplicate the message three times
-  duplicateCount: 3
+	//duplicate the message three times
+	duplicateCount: 3
 });
 ```
 
