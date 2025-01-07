@@ -1,6 +1,7 @@
 name: Publish to NPM
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*'  # Triggers when you push a version tag, e.g., v1.0.0
