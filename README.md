@@ -10,7 +10,7 @@ Install:
  - **NPM:** `npm install jquery.marquee --save`
  - **CDN:** [jsdelivr.com](http://www.jsdelivr.com/#!jquery.marquee)
 ```html
-<script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.0/jquery.marquee.min.js" type="text
+<script src="//cdn.jsdelivr.net/npm/jquery.marquee@1.6.1/jquery.marquee.min.js" type="text
 /javascript"></script>
 ```
 - **Bower**: `bower install jQuery.Marquee`
