@@ -3,7 +3,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/aamirafridi/jquery.marquee/badge.svg?targetFile=package.json)](https://snyk.io/test/github/aamirafridi/jquery.marquee?targetFile=package.json)
 [![](https://data.jsdelivr.com/v1/package/npm/jquery.marquee/badge)](https://www.jsdelivr.com/package/npm/jquery.marquee)
 
-A **~2KB MINIFIED + GZIPPED** (minified) jQuery plugin to scroll the text like the old traditional marquee.
+A small jQuery plugin to scroll the text like the old traditional marquee.
 
 Install:
 ----
